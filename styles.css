@@ -1,0 +1,267 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background: linear-gradient(270deg, #132c94, #305ec9);
+  color: #f2f2f3;
+  animation: waveBG 10s ease infinite;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+header {
+  background-color: #2a2a2e;
+  color: #f2f2f3;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes slideFade {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.anim-logo {
+  animation: slideFade 1s ease-out forwards;
+}
+
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  gap: 1rem;
+  margin: 0;
+}
+
+nav a {
+  color: #f2f2f3;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #8ca8f5;
+}
+
+#menu-toggle,
+.menu-icon {
+  display: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.hero h1 {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  background-color: #305ec9;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #8ca8f5;
+}
+
+section {
+  padding: 3rem 2rem;
+}
+
+section h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #8ca8f5;
+  margin-bottom: 1.5rem;
+}
+
+#sobremi {
+  background-color: #f2f2f3;
+  color: #2a2a2e;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  line-height: 1.7;
+  font-size: 1.15rem;
+}
+
+#sobremi p {
+  margin-top: 1rem;
+  text-align: justify;
+}
+
+#sobremi h2 {
+  color: #305ec9;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.perfil-img {
+  max-width: 280px;
+  border-radius: 5%;
+  margin: 1rem auto;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.wave-divider {
+  height: 60px;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C600,100 600,0 1200,100 L1200,0 L0,0 Z" fill="%23f2f2f3"/></svg>') no-repeat;
+  background-size: cover;
+}
+
+
+.servicios-section {
+  background-color: #f2f2f3;
+  color: #2a2a2e;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.servicio-box {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.servicio-box:hover {
+  transform: translateY(-5px);
+}
+
+.servicio-box h3 {
+  color: #305ec9;
+  text-align: center;
+}
+
+.servicio-box ul {
+  padding-left: 1rem;
+}
+
+.servicio-box li {
+  margin-bottom: 0.5rem;
+}
+
+.aprende-section {
+  background-color: #305ec9;
+  color: white;
+}
+
+.aprende {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.aprende-box {
+  background-color: #2a2a2e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.aprende-box:hover {
+  transform: translateY(-5px);
+}
+
+.aprende-box h3 {
+  color: #305ec9;
+  text-align: center;
+}
+
+.aprende-box ul {
+  padding-left: 1rem;
+}
+
+.aprende-box li {
+  margin-bottom: 0.5rem;
+}
+
+#contacto {
+  background-color: #2a2a2e;
+  color: #f2f2f3;
+  text-align: center;
+}
+
+.social a {
+  font-size: 1.6rem;
+  margin: 0 0.4rem;
+  color: #f2f2f3;
+  transition: color 0.3s ease;
+}
+
+.social a:hover {
+  color: #8ca8f5;
+}
+
+footer {
+  background-color: #305ec9;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+}
