@@ -12,7 +12,6 @@ img {
   display: block;
 }
 
-
 header {
   background-color: #2a2a2e;
   color: #f2f2f3;
@@ -23,8 +22,22 @@ header {
 .logo {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  color: #f2f2f3;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
 }
+
+.logo::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 2px;
+  background: #305ec9;
+  margin: 0.3rem auto 0 auto;
+  border-radius: 2px;
+}
+
 
 @keyframes slideFade {
   0% {
@@ -40,7 +53,6 @@ header {
 .anim-logo {
   animation: slideFade 1s ease-out forwards;
 }
-
 
 nav ul {
   display: flex;
@@ -89,11 +101,12 @@ nav a:hover {
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
   background-color: #8ca8f5;
+  transform: scale(1.05);
 }
 
 section {
@@ -110,39 +123,58 @@ section h2 {
 #sobremi {
   background-color: #f2f2f3;
   color: #2a2a2e;
-  margin-bottom: 4rem;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2.5rem;
+  padding: 3rem 2rem;
   border-radius: 14px;
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.08);
+  max-width: 1000px;
+  margin: 0 auto 4rem auto;
+}
+
+.sobre-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap; 
+}
+
+.sobre-img {
+  flex: 1;
   text-align: center;
-  line-height: 1.7;
-  font-size: 1.15rem;
-}
-
-#sobremi p {
-  margin-top: 1rem;
-  text-align: justify;
-}
-
-#sobremi h2 {
-  color: #305ec9;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
 }
 
 .perfil-img {
-  max-width: 280px;
-  border-radius: 5%;
-  margin: 1rem auto;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  width: 310px;  
+  height: 410px;  
+  border-radius: 10%; 
+  object-fit: cover; 
+  box-shadow: 0 0 15px rgba(150, 128, 128, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.wave-divider {
-  height: 60px;
-  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C600,100 600,0 1200,100 L1200,0 L0,0 Z" fill="%23f2f2f3"/></svg>') no-repeat;
-  background-size: cover;
+.sobre-texto {
+  flex: 1.7;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  text-align: justify;
+}
+
+.sobre-texto h2 {
+  color: #305ec9;
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+
+@media (max-width: 768px) {
+  .sobre-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sobre-texto {
+    text-align: justify;
+    font-size: 2rem;
+  }
 }
 
 
@@ -153,86 +185,57 @@ section h2 {
 
 .servicios-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .servicio-box {
-  background-color: white;
+  background-color: #ffffff;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .servicio-box:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .servicio-box h3 {
   color: #305ec9;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .servicio-box ul {
-  padding-left: 1rem;
+  padding-left: 1.2rem;
+  margin: 1rem 0 0;
 }
 
 .servicio-box li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
 }
 
-.aprende-section {
-  background-color: #305ec9;
-  color: white;
-}
-
-.aprende {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
-
-.aprende-box {
-  background-color: #2a2a2e;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.aprende-box:hover {
-  transform: translateY(-5px);
-}
-
-.aprende-box h3 {
-  color: #305ec9;
-  text-align: center;
-}
-
-.aprende-box ul {
-  padding-left: 1rem;
-}
-
-.aprende-box li {
-  margin-bottom: 0.5rem;
-}
 
 #contacto {
   background-color: #2a2a2e;
   color: #f2f2f3;
   text-align: center;
+  padding: 3rem 2rem;
 }
 
 .social a {
-  font-size: 1.6rem;
-  margin: 0 0.4rem;
+  font-size: 1.8rem;
+  margin: 0 0.6rem;
   color: #f2f2f3;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .social a:hover {
   color: #8ca8f5;
+  transform: scale(1.1);
 }
 
 footer {
