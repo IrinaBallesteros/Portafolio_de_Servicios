@@ -1,7 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background: linear-gradient(270deg, #132c94, #305ec9);
+  background: linear-gradient(270deg, #889df3, #1b58f3);
   color: #f2f2f3;
   animation: waveBG 10s ease infinite;
 }
@@ -20,7 +20,7 @@ header {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #f2f2f3;
   position: relative;
@@ -60,7 +60,7 @@ nav ul {
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  gap: 1rem;
+  gap: 1.2rem;
   margin: 0;
 }
 
@@ -72,7 +72,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #8ca8f5;
+  color: #295deb;
 }
 
 #menu-toggle,
