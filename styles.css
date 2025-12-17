@@ -95,19 +95,24 @@ nav a:hover {
   margin-bottom: 2rem;
 }
 
-.btn {
-  background-color: #305ec9;
-  color: white;
-  padding: 0.8rem 1.5rem;
+
+.btn-diagnostico {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 14px 28px;
+  background:#2563eb;
+  color:  #fff;
   border-radius: 30px;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
 }
 
-.btn:hover {
+.btn-diagnostico:hover {
   background-color: #8ca8f5;
+  color: #fff;
   transform: scale(1.05);
 }
+
 
 section {
   padding: 3rem 2rem;
@@ -115,8 +120,8 @@ section {
 
 section h2 {
   text-align: center;
-  font-size: 1.8rem;
-  color: #8ca8f5;
+  font-size: 2.5rem;
+  color: #2563eb;
   margin-bottom: 1.5rem;
 }
 
@@ -188,6 +193,14 @@ section h2 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
+
+.Evaluación {
+  text-align: left;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color:black #305ec9;
+}
+
 
 .servicio-box {
   background-color: #ffffff;
