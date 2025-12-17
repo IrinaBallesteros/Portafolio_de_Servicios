@@ -105,6 +105,7 @@ nav a:hover {
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
+  margin-bottom: 30px;
 }
 
 .btn-diagnostico:hover {
