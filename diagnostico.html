@@ -4,133 +4,260 @@
   <meta charset="UTF-8">
   <title>Diagnóstico de Madurez Digital</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f6f8;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #f7f9fb;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       color: #333;
     }
 
-    .form-container {
-      max-width: 700px;
-      margin: auto;
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
       background: #ffffff;
       padding: 30px;
-      border-radius: 12px;
+      border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
     h1 {
-      font-size: 26px;
+      text-align: center;
       margin-bottom: 10px;
-      color: #1f2933;
     }
 
-    p {
-      font-size: 15px;
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
       color: #555;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #2563eb;
     }
 
     label {
       display: block;
-      margin-top: 20px;
-      font-weight: 600;
+      margin-bottom: 6px;
+      font-weight: 500;
     }
 
-    input, select, textarea {
+    input, select {
       width: 100%;
       padding: 12px;
-      margin-top: 8px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-family: inherit;
+      font-size: 14px;
+      margin-bottom: 16px;
     }
 
     button {
-      margin-top: 30px;
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      padding: 14px;
       width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #2563eb, #5de0e6);
+      border: none;
       border-radius: 10px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: bold;
+      color: #fff;
       cursor: pointer;
+      margin-top: 20px;
     }
 
     button:hover {
-      background: #1e40af;
+      opacity: 0.9;
     }
 
-    .note {
-      font-size: 13px;
-      margin-top: 15px;
-      color: #777;
+    .result {
+      margin-top: 40px;
+      padding: 25px;
+      border-radius: 14px;
+      display: none;
+    }
+
+    .low { background: #fdecea; border-left: 6px solid #e74c3c; }
+    .medium { background: #fff7e6; border-left: 6px solid #f1c40f; }
+    .high { background: #eafaf1; border-left: 6px solid #2ecc71; }
+
+    .email-block {
+      display: none;
+      margin-top: 30px;
+      padding: 20px;
+      background: #f1f5f9;
+      border-radius: 12px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="form-container">
-  <h1>Diagnóstico Básico de Madurez Digital</h1>
-  <p>Este diagnóstico te permitirá identificar oportunidades de mejora en procesos, tecnología y cultura digital.</p>
+<div class="container">
 
-  <form action="https://formsubmit.co/ballesterosirina1@gmail.com" method="POST">
+  <h1>Diagnóstico de Madurez Digital</h1>
+  <p class="intro">
+    Evalúa el nivel de madurez de tu organización y descubre el siguiente paso estratégico.
+  </p>
 
-  
-    <input type="hidden" name="_subject" value="Nuevo Diagnóstico de Madurez Digital">
+  <form id="diagnosticForm"
+        action="https://formsubmit.co/ballesterosirina1@gmail.com"
+        method="POST">
+
+    <!-- CAMPOS OCULTOS PARA EMAIL -->
+    <input type="hidden" name="_subject" value="Resultado Diagnóstico de Madurez Digital">
     <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="Nivel de madurez" id="nivelInput">
+    <input type="hidden" name="Servicio recomendado" id="servicioInput">
 
+    <!-- DATOS -->
     <label>Nombre completo</label>
     <input type="text" name="Nombre" required>
 
     <label>Correo electrónico</label>
-    <input type="email" name="Email" required>
+    <input type="email" name="Email" id="emailInput">
 
     <label>Empresa / Emprendimiento</label>
     <input type="text" name="Empresa">
 
-    <label>¿Tus procesos están documentados?</label>
-    <select name="Procesos">
-      <option value="">Selecciona una opción</option>
-      <option>La mayoría están documentados</option>
-      <option>Algunos procesos clave</option>
-      <option>No están documentados</option>
+    <!-- PREGUNTAS -->
+    <h2>Procesos</h2>
+    <label>1. ¿Los procesos están documentados?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">No existen</option>
+      <option value="2">Parcialmente</option>
+      <option value="3">Sí</option>
     </select>
 
-    <label>Uso de tecnología en la operación</label>
-    <select name="Tecnologia">
-      <option value="">Selecciona una opción</option>
-      <option>Herramientas integradas y optimizadas</option>
-      <option>Herramientas aisladas</option>
-      <option>Uso mínimo de tecnología</option>
+    <label>2. ¿Se miden para mejorar?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">No</option>
+      <option value="2">A veces</option>
+      <option value="3">Siempre</option>
     </select>
 
-    <label>Preparación del equipo frente al cambio digital</label>
-    <select name="Cultura">
-      <option value="">Selecciona una opción</option>
-      <option>Alta disposición al cambio</option>
-      <option>Resistencia moderada</option>
-      <option>Alta resistencia</option>
+    <h2>Tecnología</h2>
+    <label>3. ¿La tecnología apoya el negocio?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">Uso básico</option>
+      <option value="2">Apoyo parcial</option>
+      <option value="3">Totalmente alineada</option>
     </select>
 
-    <label>¿Qué te gustaría mejorar prioritariamente?</label>
-    <textarea name="Prioridad" rows="4"></textarea>
+    <label>4. ¿Las herramientas están integradas?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">No</option>
+      <option value="2">Parcial</option>
+      <option value="3">Sí</option>
+    </select>
 
-    <button type="submit">Enviar diagnóstico</button>
+    <h2>Datos</h2>
+    <label>5. ¿Los datos son confiables?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">No</option>
+      <option value="2">Medianamente</option>
+      <option value="3">Sí</option>
+    </select>
 
-    <p class="note">
-      Al enviar este formulario aceptas ser contactado para recibir un análisis inicial sin costo.
-    </p>
+    <label>6. ¿Se usan para decidir?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">No</option>
+      <option value="2">A veces</option>
+      <option value="3">Siempre</option>
+    </select>
 
+   
+    <h2>Cultura y personas</h2>
+    <label>7. ¿Apertura al cambio?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">Resistencia</option>
+      <option value="2">Intermedia</option>
+      <option value="3">Alta</option>
+    </select>
+
+    <label>8. ¿Existe liderazgo claro?</label>
+    <select required>
+      <option value="">Selecciona</option>
+      <option value="1">Reactivo</option>
+      <option value="2">En desarrollo</option>
+      <option value="3">Consolidado</option>
+    </select>
+
+    <button type="submit">Ver mi resultado</button>
   </form>
+
+  <div id="result" class="result"></div>
+
+  <div id="emailBlock" class="email-block">
+    <p><strong>¿Quieres recibir este diagnóstico por correo?</strong></p>
+    <button onclick="enviarEmail()">Recibir este diagnóstico por correo</button>
+  </div>
+
 </div>
+
+<script>
+  const form = document.getElementById('diagnosticForm');
+  const resultDiv = document.getElementById('result');
+  const emailBlock = document.getElementById('emailBlock');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const selects = document.querySelectorAll('select');
+    let total = 0;
+    selects.forEach(s => total += parseInt(s.value));
+    const promedio = total / selects.length;
+
+    let nivel, mensaje, clase, servicio;
+
+    if (promedio <= 1.6) {
+      nivel = 'Nivel Bajo – Madurez Inicial';
+      mensaje = 'Necesitas ordenar procesos y construir una base digital sólida.';
+      clase = 'low';
+      servicio = 'Diagnóstico de Madurez Digital y Procesos';
+    } else if (promedio <= 2.3) {
+      nivel = 'Nivel Medio – Madurez en Desarrollo';
+      mensaje = 'Tienes avances. El siguiente paso es integrar y optimizar.';
+      clase = 'medium';
+      servicio = 'Acompañamiento Mensual para Transformación Digital';
+    } else {
+      nivel = 'Nivel Alto – Madurez Avanzada';
+      mensaje = 'Tu organización está lista para escalar con estrategia.';
+      clase = 'high';
+      servicio = 'Transformación Digital Paso a Paso (3 meses)';
+    }
+
+    resultDiv.className = `result ${clase}`;
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `
+      <h3>${nivel}</h3>
+      <p>${mensaje}</p>
+      <p><strong>Servicio recomendado:</strong> ${servicio}</p>
+    `;
+
+    document.getElementById('nivelInput').value = nivel;
+    document.getElementById('servicioInput').value = servicio;
+
+    emailBlock.style.display = 'block';
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  function enviarEmail() {
+    if (!document.getElementById('emailInput').value) {
+      alert('Por favor ingresa tu correo electrónico.');
+      return;
+    }
+    form.submit();
+  }
+</script>
 
 </body>
 </html>
