@@ -2,287 +2,186 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Diagnóstico de Madurez Digital</title>
+  <title>Diagnóstico Profesional | Irina Ballesteros</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
-    body {
-      font-family: 'Poppins', Arial, sans-serif;
-      background: #f7f9fb;
-      margin: 0;
-      padding: 0;
-      color: #333;
+
+    :root {
+      --primary: #1a2a6c;
+      --secondary: #b21f1f;
+      --accent: #fdbb2d;
+      --bg: #f8fafc;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #555;
-    }
-
-    h2 {
-      margin-top: 30px;
-      color: #2563eb;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(to right, #2563eb, #5de0e6);
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .result {
-      margin-top: 40px;
-      padding: 25px;
-      border-radius: 14px;
-      display: none;
-    }
-
-    .low { background: #fdecea; border-left: 6px solid #e74c3c; }
-    .medium { background: #fff7e6; border-left: 6px solid #f1c40f; }
-    .high { background: #eafaf1; border-left: 6px solid #2ecc71; }
-
-    .email-block {
-      display: none;
-      margin-top: 30px;
-      padding: 20px;
-      background: #f1f5f9;
-      border-radius: 12px;
-    }
-
-  .privacy-check {
-    display: flex;
-    color: #555;
-    align-items: center;
-    gap: 10px;
-    font-size: 11px;
-    margin-top: 10px;       
-    cursor: pointer;
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: #334155; padding: 20px; }
+    .container { max-width: 750px; margin: 40px auto; background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
     
+    .progress-bar { height: 6px; background: #e2e8f0; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.4s; }
 
-    max-width: 400px;     
-    margin-left: auto;
-    margin-right: auto;
-  }
-    
+    .step { display: none; }
+    .step.active { display: block; animation: fadeIn 0.4s ease; }
 
-  .privacy-check input {
-    margin: 0;
-  }
+    h2 { color: var(--primary); margin-bottom: 25px; font-size: 1.5rem; }
+    .options-grid { display: grid; gap: 15px; }
 
+    .option-card {
+      padding: 18px; border: 2px solid #e2e8f0; border-radius: 15px; cursor: pointer;
+      display: flex; align-items: center; gap: 15px; transition: 0.2s;
+    }
+    .option-card:hover { border-color: var(--primary); background: #f1f5f9; }
+    .option-card.selected { border-color: var(--primary); background: rgba(26, 42, 108, 0.05); font-weight: 600; }
+    .option-card input { display: none; }
+
+    .input-field { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 10px; margin-bottom: 15px; font-size: 1rem; }
+    .btn { width: 100%; padding: 16px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .btn-next { background: var(--primary); color: white; margin-top: 10px; }
+    .btn-submit { background: var(--secondary); color: white; margin-top: 20px; }
+
+    .result-box { display: none; text-align: center; padding: 30px; border-radius: 20px; margin-top: 20px; }
+    .low { background: #fee2e2; border: 2px solid #ef4444; }
+    .med { background: #fef3c7; border: 2px solid #f59e0b; }
+    .high { background: #dcfce7; border: 2px solid #22c55e; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-
 <body>
 
 <div class="container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
-  <h1>Diagnóstico de Madurez Digital</h1>
-  <p class="intro">
-    Evalúa el nivel de madurez de tu organización y descubre el siguiente paso estratégico.
-  </p>
-
-  <form id="diagnosticForm"
-        action="https://formsubmit.co/ballesterosirina1@gmail.com"
-        method="POST">
-
-
-    <input type="hidden" name="_subject" value="Resultado Diagnóstico de Madurez Digital">
+  <form id="diagnosticForm" action="https://formsubmit.co/ballesterosirina1@gmail.com" method="POST">
+    
+    <input type="hidden" name="_subject" value="Tu Diagnóstico de Madurez Digital - Irina Ballesteros">
     <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="Nivel de madurez" id="nivelInput">
-    <input type="hidden" name="Servicio recomendado" id="servicioInput">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_cc" id="ccEmail"> 
 
 
-    <label>Nombre completo</label>
-    <input type="text" name="Nombre" required>
+    <input type="hidden" name="_autoresponder" value="¡Gracias por realizar el Diagnóstico de Madurez Digital! He recibido tus respuestas y estoy analizando tu caso. En breve me pondré en contacto contigo para profundizar en los resultados. Mientras tanto, puedes ver mis soluciones en mi web. Atte: Irina Ballesteros.">
+    
+    <input type="hidden" name="Resultado_Nivel" id="resNivel">
+    <input type="hidden" name="Recomendacion" id="resRec">
 
-    <label>Correo electrónico</label>
-    <input type="email" name="Email" id="emailInput">
+    <div class="step active" id="step1">
+      <h2>Comencemos el diagnóstico</h2>
+      <label>Nombre completo</label>
+      <input type="text" name="Nombre" class="input-field" required>
+      <label>Correo electrónico (Aquí recibirás tu informe)</label>
+      <input type="email" name="Email" id="clientEmail" class="input-field" required onchange="document.getElementById('ccEmail').value = this.value">
+      <button type="button" class="btn btn-next" onclick="nextStep(2)">Siguiente <i class="fas fa-arrow-right"></i></button>
+    </div>
 
-    <label>Empresa / Emprendimiento</label>
-    <input type="text" name="Empresa">
+    <div class="step" id="step2">
+      <h2>1. ¿Qué tan documentados están tus procesos operativos?</h2>
+      <div class="options-grid">
+        <div class="option-card" onclick="selectOption(this, 1, 3)"><i class="fas fa-times"></i> No hay nada escrito, todo es memoria. <input type="radio" name="q1" value="1"></div>
+        <div class="option-card" onclick="selectOption(this, 2, 3)"><i class="fas fa-clock"></i> Algunos procesos están en Excel/Word. <input type="radio" name="q1" value="2"></div>
+        <div class="option-card" onclick="selectOption(this, 3, 3)"><i class="fas fa-check"></i> Procesos claros y digitalizados. <input type="radio" name="q1" value="3"></div>
+      </div>
+    </div>
 
+    <div class="step" id="step3">
+      <h2>2. ¿Tus herramientas de software están integradas?</h2>
+      <div class="options-grid">
+        <div class="option-card" onclick="selectOption(this, 1, 4)"><i class="fas fa-ghost"></i> Trabajamos con herramientas aisladas. <input type="radio" name="q2" value="1"></div>
+        <div class="option-card" onclick="selectOption(this, 2, 4)"><i class="fas fa-link"></i> Usamos conectores (como Zapier) a veces. <input type="radio" name="q2" value="2"></div>
+        <div class="option-card" onclick="selectOption(this, 3, 4)"><i class="fas fa-robot"></i> Todo fluye automáticamente entre sistemas. <input type="radio" name="q2" value="3"></div>
+      </div>
+    </div>
 
-    <h2>Procesos</h2>
-    <label>1. ¿Los procesos están documentados?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">No existen</option>
-      <option value="2">Parcialmente</option>
-      <option value="3">Sí</option>
-    </select>
+    <div class="step" id="step4">
+      <h2>3. ¿Cómo tomas decisiones estratégicas?</h2>
+      <div class="options-grid">
+        <div class="option-card" onclick="selectOption(this, 1, 5)"><i class="fas fa-brain"></i> Por intuición o experiencia previa. <input type="radio" name="q3" value="1"></div>
+        <div class="option-card" onclick="selectOption(this, 2, 5)"><i class="fas fa-chart-line"></i> Miramos reportes al final del mes. <input type="radio" name="q3" value="2"></div>
+        <div class="option-card" onclick="selectOption(this, 3, 5)"><i class="fas fa-eye"></i> Datos en tiempo real con Dashboards. <input type="radio" name="q3" value="3"></div>
+      </div>
+    </div>
 
-    <label>2. ¿Se miden para mejorar?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">No</option>
-      <option value="2">A veces</option>
-      <option value="3">Siempre</option>
-    </select>
+    <div class="step" id="step5">
+      <h2>4. ¿Cómo reacciona tu equipo al cambio tecnológico?</h2>
+      <div class="options-grid">
+        <div class="option-card" onclick="selectOption(this, 1, 'Final')"><i class="fas fa-shield-alt"></i> Hay mucha resistencia y miedo. <input type="radio" name="q4" value="1"></div>
+        <div class="option-card" onclick="selectOption(this, 2, 'Final')"><i class="fas fa-walking"></i> Se adaptan, pero tardan mucho. <input type="radio" name="q4" value="2"></div>
+        <div class="option-card" onclick="selectOption(this, 3, 'Final')"><i class="fas fa-rocket"></i> Cultura de innovación constante. <input type="radio" name="q4" value="3"></div>
+      </div>
+    </div>
 
-    <h2>Tecnología</h2>
-    <label>3. ¿La tecnología apoya el negocio?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">Uso básico</option>
-      <option value="2">Apoyo parcial</option>
-      <option value="3">Totalmente alineada</option>
-    </select>
-
-    <label>4. ¿Las herramientas están integradas?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">No</option>
-      <option value="2">Parcial</option>
-      <option value="3">Sí</option>
-    </select>
-
-    <h2>Datos</h2>
-    <label>5. ¿Los datos son confiables?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">No</option>
-      <option value="2">Medianamente</option>
-      <option value="3">Sí</option>
-    </select>
-
-    <label>6. ¿Se usan para decidir?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">No</option>
-      <option value="2">A veces</option>
-      <option value="3">Siempre</option>
-    </select>
-
-   
-    <h2>Cultura y personas</h2>
-    <label>7. ¿Apertura al cambio?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">Resistencia</option>
-      <option value="2">Intermedia</option>
-      <option value="3">Alta</option>
-    </select>
-
-    <label>8. ¿Existe liderazgo claro?</label>
-    <select required>
-      <option value="">Selecciona</option>
-      <option value="1">Reactivo</option>
-      <option value="2">En desarrollo</option>
-      <option value="3">Consolidado</option>
-    </select>
-
-    <label class="privacy-check">
-    <input type="checkbox" required> 
-    Acepto que mi información sea utilizada únicamente para fines de diagnóstico y contacto profesional. No será compartida con terceros.</label>
-
-  <button type="submit">Ver mi resultado</button>
+    <div class="step" id="stepFinal">
+      <h2>¡Análisis completado!</h2>
+      <p>Haz clic para descubrir tu nivel de madurez. Se enviará una copia detallada a tu correo.</p>
+      <button type="submit" class="btn btn-submit">Obtener mi Resultado</button>
+    </div>
   </form>
 
-  <div id="result" class="result"></div>
-
-  <div id="emailBlock" class="email-block">
-    <p><strong>¿Quieres recibir este diagnóstico por correo?</strong></p>
-    <button onclick="enviarEmail()">Recibir este diagnóstico por correo</button>
-  </div>
-
+  <div id="resultArea" class="result-box"></div>
 </div>
 
 <script>
-  const form = document.getElementById('diagnosticForm');
-  const resultDiv = document.getElementById('result');
-  const emailBlock = document.getElementById('emailBlock');
+  let currentStep = 1;
+  const totalSteps = 6;
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+  function nextStep(step) {
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    if(step === 'Final') currentStep = 'Final';
+    else currentStep = step;
+    document.getElementById(`step${currentStep}`).classList.add('active');
+    updateProgress();
+  }
 
-    const selects = document.querySelectorAll('select');
-    let total = 0;
-    selects.forEach(s => total += parseInt(s.value));
-    const promedio = total / selects.length;
+  function updateProgress() {
+    const steps = [1, 2, 3, 4, 5, 'Final'];
+    const idx = steps.indexOf(currentStep);
+    const percent = (idx / (steps.length - 1)) * 100;
+    document.getElementById('progressFill').style.width = percent + '%';
+  }
 
-    let nivel, mensaje, clase, servicio;
+  function selectOption(card, val, next) {
+    const parent = card.parentElement;
+    parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    card.querySelector('input').checked = true;
+    setTimeout(() => nextStep(next), 400);
+  }
 
-    if (promedio <= 1.6) {
-      nivel = 'Nivel Bajo – Madurez Inicial';
-      mensaje = 'Necesitas ordenar procesos y construir una base digital sólida.';
-      clase = 'low';
-      servicio = 'Diagnóstico de Madurez Digital y Procesos';
-    } else if (promedio <= 2.3) {
-      nivel = 'Nivel Medio – Madurez en Desarrollo';
-      mensaje = 'Tienes avances. El siguiente paso es integrar y optimizar.';
-      clase = 'medium';
-      servicio = 'Acompañamiento Mensual para Transformación Digital';
+  document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
+    const q1 = parseInt(document.querySelector('input[name="q1"]:checked').value);
+    const q2 = parseInt(document.querySelector('input[name="q2"]:checked').value);
+    const q3 = parseInt(document.querySelector('input[name="q3"]:checked').value);
+    const q4 = parseInt(document.querySelector('input[name="q4"]:checked').value);
+    
+    const score = (q1 + q2 + q3 + q4) / 4;
+    let nivel, rec, clase;
+
+    if(score <= 1.5) {
+      nivel = "Madurez Inicial (Reactiva)";
+      rec = "Foco urgente en organizar procesos básicos antes de comprar más software.";
+      clase = "low";
+    } else if(score <= 2.5) {
+      nivel = "Madurez en Crecimiento";
+      rec = "Tus bases existen, necesitas integrar sistemas para dejar de duplicar tareas.";
+      clase = "med";
     } else {
-      nivel = 'Nivel Alto – Madurez Avanzada';
-      mensaje = 'Tu organización está lista para escalar con estrategia.';
-      clase = 'high';
-      servicio = 'Transformación Digital Paso a Paso (3 meses)';
+      nivel = "Madurez Optimizada";
+      rec = "Estás listo para automatizaciones avanzadas e Inteligencia de Negocios.";
+      clase = "high";
     }
-
-    resultDiv.className = `result ${clase}`;
-    resultDiv.style.display = 'block';
-    resultDiv.innerHTML = `
-      <h3>${nivel}</h3>
-      <p>${mensaje}</p>
-      <p><strong>Servicio recomendado:</strong> ${servicio}</p>
-    `;
-
-    document.getElementById('nivelInput').value = nivel;
-    document.getElementById('servicioInput').value = servicio;
-
-    emailBlock.style.display = 'block';
-    resultDiv.scrollIntoView({ behavior: 'smooth' });
-  });
 
   
-  function enviarEmail() {
-    if (!document.getElementById('emailInput').value) {
-      alert('Por favor ingresa tu correo electrónico.');
-      return;
-    }
-    form.submit();
-  }
+    document.getElementById('resNivel').value = nivel;
+    document.getElementById('resRec').value = rec;
+
+
+    const resultArea = document.getElementById('resultArea');
+    resultArea.style.display = "block";
+    resultArea.className = `result-box ${clase}`;
+    resultArea.innerHTML = `<h3>Tu Nivel: ${nivel}</h3><p>${rec}</p><small>Enviando informe completo a tu correo...</small>`;
+  });
 </script>
 
 </body>
