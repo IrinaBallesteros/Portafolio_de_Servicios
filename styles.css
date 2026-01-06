@@ -136,8 +136,8 @@ header nav ul li a:hover {
 .hero p {
   font-size: 1.2rem;
   color: #636e72;
-  max-width: 600px;
   margin-bottom: 2.5rem;
+  max-width: 600px;
 }
 
 .sobre-container {
@@ -173,6 +173,13 @@ header nav ul li a:hover {
   height: 4px;
   background: var(--accent);
   margin-top: 0.5rem;
+}
+
+.sobre-texto p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 .servicios-grid {
@@ -231,6 +238,11 @@ header nav ul li a:hover {
   padding: 50px;
   border-radius: 30px;
   box-shadow: var(--shadow-strong);
+}
+
+.contacto-redes p {
+  margin-bottom: 20px;
+  color: #4b5563;
 }
 
 .contacto-info .subtitle {
