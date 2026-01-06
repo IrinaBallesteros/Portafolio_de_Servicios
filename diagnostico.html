@@ -31,6 +31,7 @@
     .option-card {
       padding: 18px; border: 2px solid #e2e8f0; border-radius: 15px; cursor: pointer;
       display: flex; align-items: center; gap: 15px; transition: 0.2s;
+      
     }
     .option-card:hover { border-color: var(--primary); background: #f1f5f9; }
     .option-card.selected { border-color: var(--primary); background: rgba(26, 42, 108, 0.05); font-weight: 600; }
@@ -46,23 +47,54 @@
     .med { background: #fef3c7; border: 2px solid #f59e0b; }
     .high { background: #dcfce7; border: 2px solid #22c55e; }
 
+    .privacy-notice {
+    margin-top: 25px;
+    padding: 15px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: #64748b;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .privacy-notice input {
+    margin-top: 4px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+
+  .privacy-notice span {
+    line-height: 1.4;
+  }
+
+  .privacy-link {
+    color: var(--primary);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
+
 
 <div class="container">
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
   <form id="diagnosticForm" action="https://formsubmit.co/ballesterosirina1@gmail.com" method="POST">
     
-    <input type="hidden" name="_subject" value="Tu Diagnóstico de Madurez Digital - Irina Ballesteros">
+    <input type="hidden" name="_subject" value="📉 Nuevo Diagnóstico: Informe de Madurez Digital">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
+    
     <input type="hidden" name="_cc" id="ccEmail"> 
 
-
-    <input type="hidden" name="_autoresponder" value="¡Gracias por realizar el Diagnóstico de Madurez Digital! He recibido tus respuestas y estoy analizando tu caso. En breve me pondré en contacto contigo para profundizar en los resultados. Mientras tanto, puedes ver mis soluciones en mi web. Atte: Irina Ballesteros.">
+    <input type="hidden" name="_autoresponder" value="He recibido tu diagnóstico de madurez digital correctamente. Estoy analizando tus respuestas y pronto te contactaré para una sesión estratégica. Atte: Irina Ballesteros.">
     
     <input type="hidden" name="Resultado_Nivel" id="resNivel">
     <input type="hidden" name="Recomendacion" id="resRec">
@@ -72,7 +104,7 @@
       <label>Nombre completo</label>
       <input type="text" name="Nombre" class="input-field" required>
       <label>Correo electrónico (Aquí recibirás tu informe)</label>
-      <input type="email" name="Email" id="clientEmail" class="input-field" required onchange="document.getElementById('ccEmail').value = this.value">
+      <input type="email" name="email" id="clientEmail" class="input-field" required>
       <button type="button" class="btn btn-next" onclick="nextStep(2)">Siguiente <i class="fas fa-arrow-right"></i></button>
     </div>
 
@@ -114,8 +146,15 @@
 
     <div class="step" id="stepFinal">
       <h2>¡Análisis completado!</h2>
-      <p>Haz clic para descubrir tu nivel de madurez. Se enviará una copia detallada a tu correo.</p>
-      <button type="submit" class="btn btn-submit">Obtener mi Resultado</button>
+      <p>Hemos procesado tus respuestas. Antes de ver tu resultado, confirma la aceptación de datos:</p>
+      <label class="privacy-notice">
+        <input type="checkbox" id="privacyCheck">
+        <span>
+          Acepto que mis datos sean tratados para fines de este diagnóstico y contacto profesional por parte de <strong>Irina Ballesteros</strong>. No compartiremos tu información con terceros.
+        </span>
+      </label>
+
+      <button type="button" class="btn btn-submit" onclick="validarYEnviar()">Obtener mi Resultado</button>
     </div>
   </form>
 
@@ -128,8 +167,7 @@
 
   function nextStep(step) {
     document.getElementById(`step${currentStep}`).classList.remove('active');
-    if(step === 'Final') currentStep = 'Final';
-    else currentStep = step;
+    currentStep = step === 'Final' ? 'Final' : step;
     document.getElementById(`step${currentStep}`).classList.add('active');
     updateProgress();
   }
@@ -149,39 +187,89 @@
     setTimeout(() => nextStep(next), 400);
   }
 
-  document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
-    const q1 = parseInt(document.querySelector('input[name="q1"]:checked').value);
-    const q2 = parseInt(document.querySelector('input[name="q2"]:checked').value);
-    const q3 = parseInt(document.querySelector('input[name="q3"]:checked').value);
-    const q4 = parseInt(document.querySelector('input[name="q4"]:checked').value);
-    
-    const score = (q1 + q2 + q3 + q4) / 4;
-    let nivel, rec, clase;
+  function validarYEnviar() {
+  const form = document.getElementById('diagnosticForm');
 
-    if(score <= 1.5) {
-      nivel = "Madurez Inicial (Reactiva)";
-      rec = "Foco urgente en organizar procesos básicos antes de comprar más software.";
-      clase = "low";
-    } else if(score <= 2.5) {
-      nivel = "Madurez en Crecimiento";
-      rec = "Tus bases existen, necesitas integrar sistemas para dejar de duplicar tareas.";
-      clase = "med";
-    } else {
-      nivel = "Madurez Optimizada";
-      rec = "Estás listo para automatizaciones avanzadas e Inteligencia de Negocios.";
-      clase = "high";
-    }
+
+  const nombreInput = document.querySelector('input[name="Nombre"]');
+  const emailInput = document.getElementById('clientEmail');
+  const privacyCheck = document.getElementById('privacyCheck');
+  
+
+  const q1 = document.querySelector('input[name="q1"]:checked');
+  const q2 = document.querySelector('input[name="q2"]:checked');
+  const q3 = document.querySelector('input[name="q3"]:checked');
+  const q4 = document.querySelector('input[name="q4"]:checked');
+
+
+  const regexNombre = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
+  if (!nombreInput.value.trim() || !regexNombre.test(nombreInput.value)) {
+    alert("Por favor, ingresa un nombre válido (solo letras).");
+    nombreInput.focus();
+    return;
+  }
+
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regexEmail.test(emailInput.value)) {
+    alert("Por favor, ingresa un correo electrónico válido.");
+    emailInput.focus();
+    return;
+  }
+
+
+  if (!q1 || !q2 || !q3 || !q4) {
+    alert("Por favor, responde todas las preguntas del diagnóstico antes de continuar.");
+    return;
+  }
+
+
+  if (!privacyCheck || !privacyCheck.checked) {
+    alert("Por favor, acepta la política de tratamiento de datos.");
+    return;
+  }
 
   
-    document.getElementById('resNivel').value = nivel;
-    document.getElementById('resRec').value = rec;
+  const score = (parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value) + parseInt(q4.value)) / 4;
+  let nivel, rec, clase;
 
+  if (score <= 1.5) {
+    nivel = "Madurez Inicial (Reactiva)";
+    rec = "Foco urgente en organizar procesos básicos.";
+    clase = "low";
+  } else if (score <= 2.5) {
+    nivel = "Madurez en Crecimiento";
+    rec = "Necesitas integrar sistemas para dejar de duplicar tareas.";
+    clase = "med";
+  } else {
+    nivel = "Madurez Optimizada";
+    rec = "Listo para automatizaciones avanzadas.";
+    clase = "high";
+  }
 
-    const resultArea = document.getElementById('resultArea');
-    resultArea.style.display = "block";
-    resultArea.className = `result-box ${clase}`;
-    resultArea.innerHTML = `<h3>Tu Nivel: ${nivel}</h3><p>${rec}</p><small>Enviando informe completo a tu correo...</small>`;
-  });
+  document.getElementById('resNivel').value = nivel;
+  document.getElementById('resRec').value = rec;
+  document.getElementById('ccEmail').value = emailInput.value; 
+
+ 
+  const resultArea = document.getElementById('resultArea');
+  resultArea.style.display = "block";
+  resultArea.className = `result-box ${clase}`;
+  resultArea.innerHTML = `
+    <i class="fas fa-paper-plane"></i>
+    <h3>Tu Resultado: ${nivel}</h3>
+    <p>${rec}</p>
+    <div style="margin-top:15px; font-size: 0.9rem; opacity: 0.8;">
+      <i class="fas fa-spinner fa-spin"></i> Generando informe y enviando a tu correo...
+    </div>
+  `;
+
+  resultArea.scrollIntoView({ behavior: 'smooth' });
+
+  
+  setTimeout(() => {
+    form.submit();
+  }, 2500);
+}
 </script>
 
 </body>
