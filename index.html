@@ -8,6 +8,92 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  
+</head>
+<style>
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      z-index: 9999;
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      width: 100%;
+      max-width: 700px;
+      max-height: 90vh;
+      border-radius: 20px;
+      position: relative;
+      padding: 40px;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px; right: 25px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #64748b;
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover { color: #1e3a8a; }
+
+    .package-box {
+      border-left: 4px solid #2563eb;
+      background: #f8fafc;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .package-box h4 { color: #1e3a8a; margin-top: 0; font-size: 1.3rem; }
+    .price-label { 
+      display: inline-block; 
+      background: #dbeafe; 
+      color: #1e40af; 
+      padding: 4px 12px; 
+      border-radius: 20px; 
+      font-weight: bold; 
+      margin: 10px 0;
+    }
+
+    .modal-btn-wa {
+      display: block;
+      text-align: center;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 30px;
+      transition: background 0.3s;
+    }
+
+    .modal-btn-wa:hover { background: #128c7e; }
+
+    
+    .btn-open-modal {
+      cursor: pointer;
+      border: none;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -32,135 +118,69 @@
   </section>
 
   <section id="sobremi">
-  <div class="sobre-container">
-    <div class="sobre-img">
-      <img src="images/perf.jpeg" alt="Foto de Irina Ballesteros" class="perfil-img">
+    <div class="sobre-container">
+      <div class="sobre-img">
+        <img src="images/perf.jpeg" alt="Foto de Irina Ballesteros" class="perfil-img">
+      </div>
+      <div class="sobre-texto">
+        <h2>Sobre mí</h2>
+         <p>Soy Administradora de Empresas con más de 10 años de experiencia acompañando organizaciones a ordenar sus procesos, mejorar su operación y tomar decisiones con mayor claridad.</p>
+
+          <p>A lo largo de mi trayectoria he liderado procesos de planeación estratégica, gestión organizacional, calidad, facturación, atención al cliente y satisfacción del usuario, lo que me ha permitido entender de primera mano dónde se generan los errores, los reprocesos y las pérdidas operativas dentro de las empresas.</p>
+
+          <p>Cuento con formación y experiencia como Auditora Interna en Sistemas Integrados de Gestión, con conocimiento en normas como ISO 9001, ISO 45001 y OHSAS 18001, lo que me permite analizar procesos con criterio, enfoque en riesgos y orientación a la mejora continua, sin caer en burocracia innecesaria.</p>
+
+          <p>Actualmente me formo como Ingeniera de Software, integrando la gestión empresarial con el desarrollo tecnológico. Esta combinación me permite diseñar soluciones digitales alineadas a procesos reales, pensadas para ser útiles, escalables y sostenibles en el tiempo.</p>
+
+          <p>Mi enfoque es práctico y humano, dado que no implemento herramientas por moda, sino soluciones que ayudan a las empresas a trabajar mejor, con más orden, control y eficiencia.</p>
+      </div>
     </div>
-    <div class="sobre-texto">
-      <h2>Sobre mí</h2>
-      <p>Soy Administradora de Empresas con más de 10 años de experiencia acompañando organizaciones a ordenar sus procesos, mejorar su operación y tomar decisiones con mayor claridad.</p>
+  </section>
 
-      <p>A lo largo de mi trayectoria he liderado procesos de planeación estratégica, gestión organizacional, calidad, facturación, atención al cliente y satisfacción del usuario, lo que me ha permitido entender de primera mano dónde se generan los errores, los reprocesos y las pérdidas operativas dentro de las empresas.</p>
+  <section id="servicios">
+    <h2 class="section-title">Servicios de Auditoría y Confiabilidad Operacional</h2>
+    <p class="section-subtitle">Estos servicios están diseñados para ayudar a organizaciones que necesitan recuperar el control sobre sus procesos, datos y tecnología.</p>
 
-      <p>Cuento con formación y experiencia como Auditora Interna en Sistemas Integrados de Gestión, con conocimiento en normas como ISO 9001, ISO 45001 y OHSAS 18001, lo que me permite analizar procesos con criterio, enfoque en riesgos y orientación a la mejora continua, sin caer en burocracia innecesaria.</p>
+    <div class="servicios-grid">
+      
+      <article class="servicio-card">
+        <img src="images/servicio_1.jpg" alt="Auditoría y Optimización de Procesos">
+        <h3>Auditoría y Optimización de Procesos</h3>
+        <p>Detecta, corrige y previene problemas en tus procesos para que tu organización funcione con eficiencia y seguridad.</p>
+        <p class="servicio-meta">⏱ Según alcance · 💻 Virtual o Presencial</p>
+        <button class="btn-cta btn-open-modal" onclick="openServiceDetail(1)">Más información</button>
+      </article> 
 
-      <p>Actualmente me formo como Ingeniera de Software, integrando la gestión empresarial con el desarrollo tecnológico. Esta combinación me permite diseñar soluciones digitales alineadas a procesos reales, pensadas para ser útiles, escalables y sostenibles en el tiempo.</p>
+      <article class="servicio-card servicio-destacado">
+        <div class="badge-popular">Más Solicitado</div> 
+        <img src="images/servicio_2.jpg" alt="Diagnóstico y Limpieza de Datos">
+        <h3>Diagnóstico y Limpieza de Datos</h3>
+        <p>Evaluamos y corregimos errores en tus archivos de datos (Excel, CSV, JSON o SQL), para que tu información sea confiable y lista para análisis o uso operativo.</p>
+        
+        <p class="servicio-meta">⏱ Según alcance · 💻 Virtual</p>
+        <button class="btn-cta btn-destacado btn-open-modal" onclick="openServiceDetail(2)">Más Información</button>
+      </article>
 
-      <p>Mi enfoque es práctico y humano, dado que no implemento herramientas por moda, sino soluciones que ayudan a las empresas a trabajar mejor, con más orden, control y eficiencia.</p>
-    </div>
-  </div>
-</section>
-
-<section id="servicios"></section>
- <section id="servicios-entrada" class="Servicios de Auditoría y Confiabilidad Operacional">
-  <h2 class="section-title">Servicios de Auditoría y Confiabilidad Operacional</h2>
-  <p class="section-subtitle">Estos servicios están diseñados para ayudar a organizaciones que necesitan recuperar el control sobre sus procesos, datos y tecnología. A través de un enfoque de auditoría, análisis y mejora continua, evalúo cómo funciona realmente la operación, identifico riesgos, fallas y oportunidades de optimización, y entrego recomendaciones claras para construir organizaciones más ordenadas, confiables y sostenibles en el entorno digital.</p>
-
-  <div class="servicios-grid">
-    <article class="servicio-card">
-      <img src="images/servicio_1.jpg" alt="Auditoría y Optimización de Procesos">
-      <h3>Auditoría y Optimización de Procesos (Calidad, Control y Mejora Continua)</h3>
-      <p><strong>¿Tu empresa funciona, pero con fricción, reprocesos o pérdida de control?</strong></p>
-      <p>Este servicio evalúa cómo operan tus procesos reales (no los que están en el papel) para identificar fallas, riesgos y oportunidades de mejora.</p>
-      <p><strong>Incluye:</strong></p>
-      <ul>
-        <li>Evaluación integral de procesos y flujos operativos.</li>
-        <li>Identificación de riesgos, redundancias y áreas de mejora.</li>
-        <li>Validación de documentación y procedimientos internos.</li>
-        <li>Recomendaciones prácticas para optimización y sostenibilidad.</li>
-      </ul>
-      <p><strong>Entregables:</strong></p>
-      <ul>
-        <li>Informe de auditoría con hallazgos y oportunidades de mejora.</li>
-        <li>Roadmap de acciones priorizadas.</li>
-        <li>Presentación ejecutiva con métricas y recomendaciones clave.</li>
-      </ul>
-      <p><strong>Resultado:</strong></p>
-      <p>Procesos optimizados, controles claros y una base confiable para decisiones estratégicas.</p>
-      <p class="servicio-meta">⏱ 2–4 semanas · 💻 Virtual o Presencial</p>
-      <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta">Más información</a>
-    </article> 
-
-    <article class="servicio-card servicio-destacado">
-      <div class="badge-popular">Más Solicitado</div> <img src="images/servicio_2.jpg" alt="Diagnóstico y Limpieza de Datos">
-      <h3>Diagnóstico y Limpieza de Datos</h3>
-      <p><strong>Si tus datos están desordenados, tus decisiones también lo están.</strong></p>
-      <p>Este servicio permite evaluar y corregir errores en archivos de datos como Excel, CSV u otras fuentes estructuradas.</p>
-      <p><strong>Incluye:</strong></p>
-      <ul>
-        <li>Carga y revisión de archivos (Excel, CSV, JSON, SQL).</li>
-          <li>Detección de errores comunes: duplicados, valores nulos, formatos inconsistentes.</li>
-          <li>Propuestas de normalización y consolidación de datos.</li>
-      </ul>
-        <p><strong>Clasificación del servicio según volumen y complejidad:</strong></p>
-      <ul>  
-        <li>Limpieza básica: hasta 5,000 filas, revisión de duplicados, nulos y formatos.</li>
-        <li>Limpieza avanzada: más de 5,000 filas o múltiples archivos, incluye consolidación y normalización.</li>
-      </ul>
-      <p><strong>Entregables:</strong></p>
-        <li>Reporte de diagnóstico con hallazgos y recomendaciones.</li>
-        <li>Archivos corregidos y organizados según nivel de limpieza.</li>
-        <li>Scripts o guías para aplicar mejoras futuras.</li>
-      </ul>
-      <p><strong>Resultado:</strong></p>
-        <p>Información confiable y estructurada, lista para análisis, migración o uso operativo, reduciendo errores y mejorando la eficiencia.</p>
-      <p class="servicio-meta">⏱ según alcance · 💻 Virtual</p>
-      <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta btn-cta btn-destacado">Más información</a>
-    </article>
-
-    <article class="servicio-card">          
-      <img src="images/servicio_3.jpg" alt="Consultoría Estratégica 1:1 en Procesos y Tecnología">
-       <h3>Consultoría Estratégica 1:1 en Procesos y Tecnología</h3>
-       <p><strong>Para quienes necesitan claridad antes de invertir tiempo o dinero.</strong></p>   
-       <p>Sesiones personalizadas para ayudarte a tomar mejores decisiones sobre organización, tecnología, digitalización y procesos.</p>   
-        <p><strong>Incluye:</strong></p>
-        <ul>
-          <li>Sesiones individuales de asesoría personalizada.</li>
-          <li>Evaluación de procesos, herramientas y sistemas existentes.</li>
-          <li>Recomendaciones para optimización y adopción tecnológica.</li>
-          <li>Capacitación puntual y guía práctica para implementación.</li>
-        </ul> 
-          <p><strong>Entregables:</strong></p>
-        <ul>
-          <li>Plan de acción personalizado con recomendaciones concretas.</li>
-          <li>Guías y ejemplos prácticos para aplicar mejoras inmediatas.</li>
-          <li>Seguimiento de avances según acuerdos con el cliente.</li>
-        </ul>
-         <p><strong>Resultado:</strong>
-          <p>Procesos más claros, decisiones mejor fundamentadas y adopción efectiva de tecnología.</p>
-          <p class="servicio-meta">⏱ 1–2 sesiones de 60–90 minutos por ciclo · 💻 Virtual o Presencial</p>
-         <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta">Más información</a>
-    </article>
+      <article class="servicio-card">          
+        <img src="images/servicio_3.jpg" alt="Consultoría Estratégica 1:1">
+         <h3>Consultoría Estratégica 1:1 en Procesos y Tecnología</h3>
+         <p>Impulsa tu crecimiento profesional y la eficiencia de tu equipo con asesoría directa y práctica.</p>  
+          <p class="servicio-meta">⏱ Según paquete · 💻 Virtual</p>
+         <button class="btn-cta btn-open-modal" onclick="openServiceDetail(3)">Más información</button>
+      </article>
 
       <article class="servicio-card">
-        <img src="images/servicio_4.jpg" alt="Auditoría de Calidad de Sistemas y Riesgos Digitales">
-        <h3>Auditoría de Calidad de Sistemas y Riesgos Digitales (QA y Ciberhigiene)</h3>
-        <p><strong>La tecnología también debe ser auditada.</strong>></p>     
-        <p>Este servicio evalúa la calidad y confiabilidad de sistemas, herramientas y procesos digitales.</p> 
-       <p>Incluye:</p>
-        <ul>
-          <li>Revisión de sistemas, aplicaciones y bases de datos.</li>
-          <li>Detección de errores, vulnerabilidades y riesgos digitales.</li>
-          <li>Evaluación de integridad de datos, seguridad y cumplimiento de estándares.</li>
-          <li>Recomendaciones para mitigación de riesgos y optimización tecnológica.</li>
-         </ul> 
-         <p><strong>Entregables:</strong></p>
-          <ul>
-            <li>Informe de auditoría con hallazgos, métricas y riesgos identificados.</li>
-            <li>Roadmap de mitigación y plan de mejoras tecnológicas.</li>
-            <li>Panel ejecutivo con resultados resumidos y accionables.</li> 
-          </ul>
-         <p><strong>Resultado:</strong> 
-          <p>Sistemas confiables, riesgos mitigados y base tecnológica segura para la operación y toma de decisiones.</p>
-         <p class="servicio-meta">⏱ 2–3 semanas · 💻 Virtual o Presencial</p>
-          <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta">Más información</a>
+        <img src="images/servicio_4.jpg" alt="Auditoría de Sistemas">
+        <h3>Auditoría de Calidad de Sistemas y Riesgos Digitales</h3>
+        <p>Asegura la calidad de tus sistemas y protege la información crítica de tu organización.</p> 
+        <p class="servicio-meta">⏱ Según alcance · 💻 Virtual</p>
+        <button class="btn-cta btn-open-modal" onclick="openServiceDetail(4)">Más información</button>
       </article>
 
     </div>
   </section>
-  <div class="wave-divider"></div>
 
-  <section id="diagnostico-digital" class="servicios-section servicios-diagnostico">
+   <section id="diagnostico-digital" class="servicios-section servicios-diagnostico">
   <div class="diagnostico-wrapper">
 
       <div class="diagnostico-img">
@@ -190,9 +210,9 @@
 
   </div>
 </section>
-  <div class="wave-divider"></div>
 
-  <section id="servicios-especializados" class="servicios-section servicios-especializados">
+ 
+<section id="servicios-especializados" class="servicios-section servicios-especializados">
   <h2 class="section-title">Transformación Digital y Mejora Continua</h2>
   <p class="section-subtitle">
     Estos servicios están orientados a organizaciones que desean evolucionar más allá del orden básico y construir una operación verdaderamente digital, eficiente y resiliente. Acompaño a empresas y equipos en la adopción estratégica de tecnología, la mejora continua de sus procesos y el fortalecimiento de sus capacidades digitales, integrando gestión, software y cultura organizacional para lograr resultados sostenibles y medibles.
@@ -269,9 +289,8 @@
     </article>  
   </div>
 </section>
-  <div class="wave-divider"></div>      
 
- <section id="contacto" data-aos="fade-up">
+<section id="contacto" data-aos="fade-up">
   <div class="contacto-wrapper">
     <div class="contacto-info">
       <span class="subtitle">¿Hablamos?</span>
@@ -279,9 +298,9 @@
       <p>Trabajo con empresas que necesitan orden, claridad y soluciones aplicables, no discursos técnicos sin ejecución.</p>
       
       <div class="direct-contact">
-        <a href="mailto:irinaballesteros1@gmail.com" class="contact-item">
+        <a href="mailto:ballesterosirina1@gmail.com" class="contact-item">
           <i class="fas fa-envelope"></i>
-          <span>irinaballesteros1@gmail.com</span>
+          <span>ballesterosirina1@gmail.com</span>
         </a>
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
@@ -323,6 +342,91 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init();
+
+    const serviceDetails = {
+      1: {
+        title: "Auditoría y Optimización de Procesos",
+        subtitle: "Calidad, Control y Mejora Continua",
+        packages: [
+          { name: "Auditoría Express", price: "$1.250.000 – $1.750.000 COP", time: "2 semanas", items: ["Evaluación rápida de procesos clave", "Reporte ejecutivo", "Roadmap de acciones"] },
+          { name: "Auditoría Completa", price: "$3.000.000 – $4.500.000 COP", time: "3–4 semanas", items: ["Revisión integral organizacional", "Informe detallado", "Presentación ejecutiva", "Plan de mejora"] }
+        ]
+      },
+      2: {
+        title: "Diagnóstico y Limpieza de Datos",
+        subtitle: "Estructura y Claridad para tus Datos",
+        packages: [
+          { name: "Diagnóstico Express", price: "$150.000 – $250.000 COP", time: "24 horas", items: ["Análisis estructural de activo de información", "Detección de duplicados, nulos e inconsistencias", "Reporte resumido con recomendaciones"] },
+          { name: "Paquete Básico", price: "$600.000 – $750.000 COP", time: "1–3 días", items: ["Hasta 5,000 filas", "Corrección de duplicados y nulos", "Archivos corregidos", "Reporte de hallazgos"] },
+          { name: "Paquete Avanzado", price: "$1.250.000 – $1.750.000 COP", time: "1–2 semanas", items: ["Más de 5,000 filas / Multi-archivos", "Normalización completa", "Scripts de automatización", "Reporte técnico completo"] }
+        ]
+      },
+      3: {
+        title: "Consultoría Estratégica 1:1",
+        subtitle: "Claridad antes de invertir tiempo o dinero",
+        packages: [
+          { name: "Sesión Única", price: "$400.000 – $600.000 COP", time: "60–90 min", items: ["Asesoría personalizada", "Plan de acción inmediato"] },
+          { name: "Paquete de 3 Sesiones", price: "$1.100.000 – $1.500.000 COP", time: "Flexible", items: ["Seguimiento de aplicación", "Ajuste de recomendaciones"] },
+          { name: "Paquete Mensual", price: "$4.000.000 – $6.000.000 COP", time: "Mensual", items: ["Asesoría recurrente (1-2 sesiones/semana)", "Seguimiento de resultados continuo"] }
+        ]
+      },
+      4: {
+        title: "Calidad de Sistemas y Riesgos Digitales",
+        subtitle: "QA y Ciberhigiene para tu operación",
+        packages: [
+          { name: "Auditoría Básica", price: "$1.500.000 – $2.250.000 COP", time: "2 semanas", items: ["Revisión de 1 sistema o BD", "Informe de hallazgos", "Roadmap de mitigación"] },
+          { name: "Auditoría Completa", price: "$4.000.000 – $6.000.000 COP", time: "3–4 semanas", items: ["Multi-sistemas o BD críticas", "Plan de acción profundo", "Panel ejecutivo de riesgos"] }
+        ]
+      }
+    };
+
+    function openServiceDetail(id) {
+      const data = serviceDetails[id];
+      let html = `<h2 style="color:#1e3a8a; margin-bottom:5px;">${data.title}</h2>`;
+      html += `<p style="color:#64748b; font-style:italic; margin-bottom:25px;">${data.subtitle}</p>`;
+
+      data.packages.forEach(pkg => {
+        html += `
+          <div class="package-box">
+            <h4>${pkg.name}</h4>
+            <span class="price-label">${pkg.price}</span>
+            <p style="font-size:0.9rem; margin: 5px 0;"><strong>Tiempo estimado:</strong> ${pkg.time}</p>
+            <ul style="padding-left:20px; margin-top:10px;">
+              ${pkg.items.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      });
+
+      if(data.extra) {
+        html += `<p style="font-size:0.85rem; color:#1e40af; background:#eff6ff; padding:10px; border-radius:8px;">${data.extra}</p>`;
+      }
+
+      html += `<a href="https://wa.me/message/C5ZES66757IMA1" target="_blank" class="modal-btn-wa">Consultar disponibilidad por WhatsApp</a>`;
+
+      document.getElementById('modalBody').innerHTML = html;
+      document.getElementById('serviceModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeModal() {
+      document.getElementById('serviceModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+ 
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('serviceModal')) closeModal();
+    }
   </script>
+
+  <div id="serviceModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div id="modalBody">
+        </div>
+    </div>
+  </div>
+
 </body>
 </html>

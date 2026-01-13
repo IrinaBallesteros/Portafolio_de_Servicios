@@ -220,15 +220,19 @@ header nav ul li a:hover {
 .servicios-diagnostico { background: linear-gradient(135deg, #faedcf, #eef2ff); }
 
 .servicio-destacado {
-    border: 2px solid var(--primary) !important;
+    border: 2px solid var(--accent);
     transform: scale(1.03);
-    box-shadow: 0 15px 40px rgba(247, 190, 116, 0.15);
+    box-shadow: 0 15px 40px rgba(107, 245, 137, 0.15);
     z-index: 1; 
 }
 
 .btn-destacado {
-    background-color: var(--primary) !important;
+    background-color: var(--accent);
     color: white !important;
+}
+
+,.btn-destacado :hover {
+    background-color: var(--accent) !important
 }
 
 .badge-popular {
