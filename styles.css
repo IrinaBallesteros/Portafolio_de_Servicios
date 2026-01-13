@@ -231,7 +231,7 @@ header nav ul li a:hover {
     color: white !important;
 }
 
-,.btn-destacado :hover {
+.btn-destacado :hover {
     background-color: var(--accent) !important
 }
 

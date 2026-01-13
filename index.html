@@ -93,6 +93,22 @@
       border: none;
       width: 100%;
     }
+
+    .btn-open-modal, .btn-cta {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+
+    btn-open-modal:hover, .btn-cta:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); 
+    filter: brightness(1.1);
+  }
+
+  .btn-open-modal:active {
+    transform: scale(0.98); 
+  }
+
+ 
   </style>
 </head>
 
@@ -191,24 +207,17 @@
     <div class="diagnostico-content">
       <h2 class="section-title">Diagnóstico de Madurez Digital y Procesos</h2>
       <p class="section-subtitle">
-        Recomendado para empresas que necesitan claridad estratégica antes de decidir.
+        Servicio estratégico para empresas que necesitan claridad antes de invertir tiempo o dinero en tecnología.
       </p>
+     <h3>Diagnóstico de Madurez Digital</h3>
+     <p>Evalúa el estado real de los procesos, el uso de herramientas, la gestión de la información y la capacidad del equipo para operar de forma digital y organizada. Identifica brechas, riesgos y oportunidades de mejora con una visión integral del negocio.</p>
+      <p><strong>Resultado:</strong></p>
+      <p>Una radiografía clara de cómo funciona la empresa hoy y un roadmap priorizado para mejorar procesos, datos y tecnología.</p>
 
-      <h3>Diagnóstico de Madurez Digital</h3>
-      <ul>
-        <li>Evaluación personalizada</li>
-        <li>Análisis de procesos clave</li>
-        <li>Identificación de brechas digitales</li>
-        <li>Roadmap de acciones priorizadas</li>
-      </ul>
-         <br>
       <p class="servicio-meta">⏱ 1–2 semanas · 💻 Virtual</p>
-      <a href="diagnostico.html" class="btn-cta btn-secundario">
-        Haz el diagnóstico sin costo
-      </a>
+      <button class="btn-cta btn-secundario btn-open-modal" onclick="openServiceDetail(5)">
+      Ver Detalle</button>
     </div>
-
-  </div>
 </section>
 
  
@@ -222,70 +231,41 @@
     <article class="servicio-card">
       <img src="images/Paquete2.jpg" alt="Acompañamiento Mensual">
       <h3>Acompañamiento Mensual para Transformación Digital</h3>
-      <p>Soporte continuo para empresas en proceso de madurez digital.</p>
-      <p><strong>Incluye:</strong></p>
-      <ul>
-        <li>Sesión semanal</li>
-        <li>Optimización de procesos</li>
-        <li>Implementación de herramientas</li>
-        <li>Seguimiento continuo</li>
-        <li>Capacitación al equipo</li>
-        <li>Seguimiento por WhatsApp/Correo</li>
-        <li>Indicadores básicos de avance</li>
-      </ul>
+      <p>Soporte continuo para empresas que ya decidieron mejorar su forma de operar, pero necesitan guía, estructura y seguimiento.</p>
+      <p>Integra optimización de procesos, implementación de herramientas, capacitación al equipo y acompañamiento en la adopción real de la tecnología.</p>
+      
       <p><strong>Resultado:</strong></p>
-      <p>Adopción real de herramientas y mayor orden operativo.</p>  
+      <p>Orden operativo, mayor productividad y uso efectivo de herramientas digitales en el día a día.</p>  
       
       <p class="servicio-meta">📆 Mensual · 💻 Virtual</p>
-      <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta">Más información</a>
+      <button class="btn-cta btn-open-modal" onclick="openServiceDetail(6)">Más información</button>
     </article>
 
     <article class="servicio-card">
       <img src="images/Paquete3.jpg" alt="Transformación Digital Paso a Paso">
       <h3>Transformación Digital Paso a Paso (Programa 3 meses)</h3>
-      <p>Ideal para empresas que quieren transformar su operación y cultura digital de forma estructurada.</p>
+      <p>Programa estructurado para empresas que quieren transformar su operación y cultura digital de forma organizada y sostenible.</p>
       
-        <p><strong>Incluye:</strong></p>
-        <ul>
-          <li>Diagnóstico inicial completo</li>
-          <li>Roadmap de transformación</li>
-          <li>Implementación de 1–2 herramientas clave</li>
-          <li>Mapeo y optimización de procesos</li>
-          <li>Capacitación en hábitos digitales, liderazgo y ciberhigiene</li>
-          <li>Indicadores y seguimiento</li>
-          <li>Informe final con resultados y mejoras sugeridas</li>
-        </ul> 
-         <p><strong>Resultado:</strong></p> 
-        <p>Una organización más ordenada, productiva y preparada digitalmente.</p>  
+      <p>Incluye diagnóstico, definición de un roadmap, implementación de herramientas, optimización de procesos y capacitación del equipo para asegurar que el cambio no se quede en teoría.</p>
+        <p><strong>Resultado:</strong></p> 
+        <p>Una organización más eficiente, conectada y preparada para crecer con tecnología.</p>  
         
          <p class="servicio-meta">⏱ 12 semanas · 💻 Virtual o presencial</p>   
 
-        <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta">Más información</a>
+       <button class="btn-cta btn-open-modal" onclick="openServiceDetail(7)">Más información</button>
     </article>
 
     <article class="servicio-card">
       <img src="images/Paquete4.jpeg" alt="Capacitación y Desarrollo del Talento Digital">
       <h3>Capacitación y Desarrollo del Talento Digital</h3>
-      <p>Ideal para empresas que quieren fortalecer las habilidades digitales y humanas de su equipo.</p>
+      <p>Servicio de formación para empresas que quieren fortalecer las habilidades digitales, humanas y de seguridad de su equipo.</p>
       
-      <p><strong>Talleres disponibles:</strong></p>
-      <ul>
-        <li>Productividad digital</li>
-        <li>Cultura digital y transformación</li>
-        <li>Ciberseguridad para no técnicos</li>
-        <li>Liderazgo empático</li>
-        <li>Metodologías ágiles para principiantes</li>
-        <li>Empoderamiento femenino en tecnología</li>
-      </ul> 
-      <p><strong>Incluye:</strong></p>
-      <ul>
-        <li>Material descargable</li>
-        <li>Certificado de participación</li>
-        <li>Evaluación de impacto del taller</li>
-       </ul> 
-  
+      <p>A través de talleres prácticos se desarrollan competencias en productividad, cultura digital, liderazgo, ciberseguridad y metodologías de trabajo modernas.</p>
+      <p><strong>Resultado:</strong></p>
+      <p>Equipos más autónomos, conscientes, productivos y preparados para operar en entornos digitales.</p>
+    
         <p class="servicio-meta">⏱ según taller · 💻 Virtual o presencial</p>
-        <a href="https://wa.me/message/C5ZES66757IMA1" class="btn-cta">Más información</a>
+        <button class="btn-cta btn-open-modal" onclick="openServiceDetail(8)">Más información</button>
     </article>  
   </div>
 </section>
@@ -377,8 +357,42 @@
           { name: "Auditoría Básica", price: "$1.500.000 – $2.250.000 COP", time: "2 semanas", items: ["Revisión de 1 sistema o BD", "Informe de hallazgos", "Roadmap de mitigación"] },
           { name: "Auditoría Completa", price: "$4.000.000 – $6.000.000 COP", time: "3–4 semanas", items: ["Multi-sistemas o BD críticas", "Plan de acción profundo", "Panel ejecutivo de riesgos"] }
         ]
-      }
-    };
+      },
+      5: {
+        title: "Diagnóstico de Madurez Digital y Procesos",
+        subtitle: "Claridad estratégica antes de decidir",
+        packages: [
+            { name: "Diagnóstico Express", price: "$900.000 COP", time: "Micro y pequeñas empresas", items: ["Evaluación personalizada", "Análisis de brechas", "Roadmap rápido"] },
+            { name: "Diagnóstico Profesional", price: "$1.500.000 COP", time: "Empresas con varios procesos", items: ["Mapa de procesos", "Matriz de brechas digitales", "Informe técnico"] },
+            { name: "Diagnóstico Integral", price: "$2.300.000 COP", time: "Transformación total", items: ["Análisis de riesgos y cuellos de botella", "Plan estratégico a largo plazo", "Sesión de presentación"] }
+        ]
+    },
+    6: {
+        title: "Acompañamiento Mensual",
+        subtitle: "Soporte continuo para madurez digital",
+        packages: [
+            { name: "Plan Esencial", price: "$1.200.000 COP/mes", time: "1 sesión semanal", items: ["Optimización básica", "Seguimiento por WhatsApp"] },
+            { name: "Plan Profesional", price: "$1.800.000 COP/mes", time: "Sesión + Herramientas", items: ["Implementación de software", "Capacitación básica", "Métricas"] },
+            { name: "Plan Avanzado", price: "$2.500.000 COP/mes", time: "Soporte prioritario", items: ["Acompañamiento estratégico", "Transformación real de procesos"] }
+        ]
+    },
+    7: {
+        title: "Transformación Digital (3 Meses)",
+        subtitle: "Programa integral paso a paso",
+        packages: [
+            { name: "Base", price: "$3.500.000 COP", time: "Orden inicial", items: ["Diagnóstico inicial", "Mapeo de procesos"] },
+            { name: "Integral", price: "$7.500.000 COP", time: "Cambio profundo", items: ["2 herramientas clave", "Ciberhigiene", "Liderazgo digital"] }
+        ]
+    },
+    8: {
+        title: "Capacitación del Talento Digital",
+        subtitle: "Fortaleciendo habilidades humanas y técnicas",
+        packages: [
+            { name: "Taller Individual", price: "$350.000 COP", time: "2-3 horas", items: ["Material descargable", "Certificado"] },
+            { name: "Equipo Corporativo", price: "Desde $1.200.000 COP", time: "A medida", items: ["Evaluación de impacto", "Programa personalizado"] }
+        ]
+    }
+};
 
     function openServiceDetail(id) {
       const data = serviceDetails[id];
