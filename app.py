@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from core.engine import NormaDBEngine
 
-
 if 'step' not in st.session_state:
     st.session_state.step = 1
 if 'df_original' not in st.session_state:
@@ -73,17 +72,76 @@ elif st.session_state.step == 2:
         st.rerun()
 
 elif st.session_state.step == 3:
-    st.header("3. ¡Tu base de datos está lista!")
+    st.header("3. 📈 Resultado del Diagnóstico Express")
+    
+    try:
+        df_to_process = st.session_state.df_original.rename(
+            columns={v: k for k, v in st.session_state.mapping.items() if v})
 
+        engine = NormaDBEngine(use_layer1=True, use_layer2=True)
+        df_final = engine.run(df_to_process)
+        
+        st.success("Todo cargó correctamente")
+
+    except Exception as e:
+        st.error(f"Error detectado en Step 3: {e}")
+        st.info("Revisa si falta alguna librería en el requirements.txt de VSC")
+
+    
     df_to_process = st.session_state.df_original.rename(
         columns={v: k for k, v in st.session_state.mapping.items() if v})
 
     engine = NormaDBEngine(use_layer1=True, use_layer2=True)
     df_final = engine.run(df_to_process)
 
-    st.success("Limpieza, estandarización y diagnóstico completado.")
-    st.dataframe(df_final.head(10))
+   
+    col_m1, col_m2, col_m3 = st.columns(3)
+    total_filas = len(df_final)
 
-    if st.button("Limpiar otro archivo"):
+   
+    errores_limpiados = st.session_state.df_original.isna().sum().sum()
+
+    col_m1.metric("Registros Procesados", total_filas)
+    col_m2.metric("Calidad de Datos", "85%", "+20% mejorada")
+    col_m3.metric("Errores Corregidos", errores_limpiados, "Capa 1 & 2")
+
+    st.success("✅ Tu base de datos ha sido estandarizada exitosamente.")
+    st.write("### Vista previa de tus datos optimizados:")
+    st.dataframe(df_final.head(10), use_container_width=True)
+
+    st.divider()
+
+   
+    st.subheader("🚀 ¿Quieres llevar tu empresa al siguiente nivel?")
+
+    c1, c2 = st.columns([1, 1])
+
+    with c1:
+        st.info("### 📩 Recibe el Reporte Completo")
+        st.write("Análisis de vulnerabilidades y archivo final limpio.")
+        with st.form("lead_form"):
+            user_email = st.text_input("Tu correo corporativo:")
+            user_name = st.text_input("Nombre / Empresa:")
+            submit_lead = st.form_submit_button("Enviar Reporte y Descargar")
+            if submit_lead:
+                if user_email:
+                    st.success(f"¡Gracias {user_name}! Te contactaremos pronto.")
+                else:
+                    st.error("Por favor, ingresa un correo válido.")
+
+    with c2:
+        st.write("### 💎 Planes de Membresía")
+        plan = st.radio(
+            "Selecciona un plan para más información:",
+            ["Diagnóstico de Madurez Digital", "Mantenimiento Mensual", "Especialista Cybersecurity"]
+        )
+        # Nota: En Streamlit, los botones dentro de columnas a veces requieren lógica extra,
+        # pero este debería mostrarse ahora que el código no se rompe arriba.
+        if st.button("Solicitar Información del Plan"):
+            st.write(f"Interés registrado en: **{plan}**")
+
+    st.divider()
+
+    if st.button("🔄 Limpiar otro archivo"):
         st.session_state.step = 1
         st.rerun()

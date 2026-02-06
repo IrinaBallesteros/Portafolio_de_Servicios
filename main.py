@@ -1,8 +1,7 @@
 import pandas as pd
 import os
-from processors.layer_1_rules import Layer1Standardizer
-from processors.layer_2_ai import Layer2Intelligence
-
+from processors.layer_1_rules import Layer1Rules
+from processors.layer_2_ai import Layer2AI
 
 def cargar_y_validar_archivo(ruta_archivo):
     extension = os.path.splitext(ruta_archivo)[1].lower()
@@ -18,7 +17,7 @@ def cargar_y_validar_archivo(ruta_archivo):
 
         print(f"✅ Archivo cargado exitosamente. Filas: {len(df)}")
 
-
+      
         columnas_requeridas = ['nombre', 'cedula', 'email']
         columnas_actuales = [c.lower() for c in df.columns]
 
@@ -33,10 +32,12 @@ def cargar_y_validar_archivo(ruta_archivo):
         df.columns = [c.lower() for c in df.columns]
         df.rename(columns=mapeo, inplace=True)
 
+
         faltantes = [col for col in columnas_requeridas if col not in df.columns]
 
         if faltantes:
             print(f"⚠️ Advertencia: Faltan las siguientes columnas: {faltantes}")
+           
             for col in faltantes:
                 df[col] = None
 
@@ -47,7 +48,7 @@ def cargar_y_validar_archivo(ruta_archivo):
         return None
 
 
-ruta = "data/mi_archivo_real.xlsx"
+ruta = "data/mi_archivo_real.xlsx" 
 df_sucio = cargar_y_validar_archivo(ruta)
 
 if df_sucio is not None:
@@ -55,10 +56,8 @@ if df_sucio is not None:
     l1 = Layer1Standardizer()
     df_l1 = l1.apply(df_sucio)
 
-
     l2 = Layer2Intelligence()
     df_l2 = l2.apply(df_l1)
-
 
     ruta_salida = "data/resultado_limpio.xlsx"
     df_l2.to_excel(ruta_salida, index=False)
