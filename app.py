@@ -10,10 +10,9 @@ if 'df_original' not in st.session_state:
 if 'mapping' not in st.session_state:
     st.session_state.mapping = {}
 
-st.set_page_config(page_title="NORMADB AI | Auditoría de Datos", layout="wide")
+st.set_page_config(page_title="NORMADB IA | Auditoría de Datos", layout="wide")
 
 
-# --- LÓGICA DE DETECCIÓN INTELIGENTE ---
 def suggest_mapping(columns):
     suggestions = {}
     keywords = {
@@ -31,11 +30,9 @@ def suggest_mapping(columns):
     return suggestions
 
 
-# --- INTERFAZ ---
 st.title("🛡️ NORMADB AI - Diagnóstico Express")
 st.write("Optimiza tus bases de datos en 3 pasos.")
 
-# PASO 1: SUBIDA
 if st.session_state.step == 1:
     st.header("1. Sube tu archivo")
     file = st.file_uploader("Arrastra tu Excel o CSV aquí", type=['xlsx', 'csv'])
@@ -45,7 +42,6 @@ if st.session_state.step == 1:
         st.session_state.step = 2
         st.rerun()
 
-# PASO 2: MAPEO (La clave de la flexibilidad)
 elif st.session_state.step == 2:
     st.header("2. Confirma la estructura de tus datos")
     df = st.session_state.df_original
@@ -76,22 +72,18 @@ elif st.session_state.step == 2:
         st.session_state.step = 3
         st.rerun()
 
-# PASO 3: RESULTADOS Y DESCARGA
 elif st.session_state.step == 3:
     st.header("3. ¡Tu base de datos está lista!")
 
-    # Aquí mapeamos los nombres elegidos por el usuario a los nombres internos
     df_to_process = st.session_state.df_original.rename(
         columns={v: k for k, v in st.session_state.mapping.items() if v})
 
-    # Ejecutamos el motor modular
     engine = NormaDBEngine(use_layer1=True, use_layer2=True)
     df_final = engine.run(df_to_process)
 
     st.success("Limpieza, estandarización y diagnóstico completado.")
     st.dataframe(df_final.head(10))
 
-    # Botón para volver a empezar
     if st.button("Limpiar otro archivo"):
         st.session_state.step = 1
         st.rerun()
