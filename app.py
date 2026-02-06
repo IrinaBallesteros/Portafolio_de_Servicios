@@ -5,15 +5,9 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# ==========================================
-# 1. DEFINICIÓN DE FUNCIONES
-# ==========================================
-
 def enviar_alerta_correo(nombre_cliente, email_cliente):    
-    # --- CONFIGURACIÓN SEGURA ---
-    # RECOMENDACIÓN: Usa st.secrets["email"] en Streamlit Cloud
     remitente = "personalsig03@gmail.com" 
-    password = "tu_contraseña_de_aplicacion" # ⚠️ ESTA DEBE SER LA CONTRASEÑA DE APP
+    password = "tu_contraseña_de_aplicacion"
     receptor = "personalsig03@gmail.com" 
 
     msg = MIMEMultipart()
@@ -32,7 +26,6 @@ def enviar_alerta_correo(nombre_cliente, email_cliente):
     msg.attach(MIMEText(cuerpo, 'plain'))
 
     try:
-        # Configuración SMTP para Gmail
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(remitente, password)
@@ -40,7 +33,6 @@ def enviar_alerta_correo(nombre_cliente, email_cliente):
         server.quit()
         return True
     except Exception as e:
-        # Imprime el error en la terminal de VSC para depurar
         print(f"Error técnico detallado: {e}")
         return False    
  
@@ -61,9 +53,6 @@ def suggest_mapping(columns):
                 break
     return suggestions
 
-# ==========================================
-# 2. INICIALIZACIÓN DE SESIÓN
-# ==========================================
 if 'step' not in st.session_state:
     st.session_state.step = 1
 if 'df_original' not in st.session_state:
@@ -73,13 +62,9 @@ if 'mapping' not in st.session_state:
 
 st.set_page_config(page_title="NORMADB IA | Auditoría de Datos", layout="wide")
 
-# ==========================================
-# 3. INTERFAZ Y LÓGICA
-# ==========================================
 st.title("🛡️ NORMADB AI - Diagnóstico Express")
 st.write("Optimiza tus bases de datos en 3 pasos.")
 
-# --- PASO 1 ---
 if st.session_state.step == 1:
     st.header("1. Sube tu archivo")
     file = st.file_uploader("Arrastra tu Excel o CSV aquí", type=['xlsx', 'csv'])
@@ -89,7 +74,6 @@ if st.session_state.step == 1:
         st.session_state.step = 2
         st.rerun()
 
-# --- PASO 2 ---
 elif st.session_state.step == 2:
     st.header("2. Confirma la estructura de tus datos")
     df = st.session_state.df_original
@@ -120,18 +104,18 @@ elif st.session_state.step == 2:
         st.session_state.step = 3
         st.rerun()
 
-# --- PASO 3 ---
+
 elif st.session_state.step == 3:
     st.header("3. 📈 Resultado del Diagnóstico Express")
     
-    # 1. PROCESAR DATOS
+
     df_to_process = st.session_state.df_original.rename(
         columns={v: k for k, v in st.session_state.mapping.items() if v})
 
     engine = NormaDBEngine(use_layer1=True, use_layer2=True)
     df_final = engine.run(df_to_process)
     
-    # 2. MOSTRAR MÉTRICAS Y RESULTADOS
+
     col_m1, col_m2, col_m3 = st.columns(3)
     total_filas = len(df_final)
     errores_limpiados = st.session_state.df_original.isna().sum().sum()
@@ -146,7 +130,6 @@ elif st.session_state.step == 3:
 
     st.divider()
 
-    # 3. SECCIÓN DE VENTAS (FORMULARIO Y WHATSAPP)
     st.subheader("🚀 ¿Quieres llevar tu empresa al siguiente nivel?")
 
     c1, c2 = st.columns([1, 1])
@@ -161,7 +144,6 @@ elif st.session_state.step == 3:
             
             if submit_lead:
                 if user_email:
-                    # Llamada a la función de correo
                     exito = enviar_alerta_correo(user_name, user_email)
                     if exito:
                         st.success(f"¡Gracias {user_name}! Te contactaremos pronto.")
