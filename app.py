@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-from normadb_engine import NormaDBEngine  # Suponiendo que este es el motor modular importable
+from core.engine import NormaDBEngine
 
-# --- CONFIGURACIÓN DE ESTADO ---
+
 if 'step' not in st.session_state:
     st.session_state.step = 1
 if 'df_original' not in st.session_state:
