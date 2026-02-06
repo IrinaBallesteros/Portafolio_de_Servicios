@@ -1,16 +1,49 @@
 import streamlit as st
 import pandas as pd
 from core.engine import NormaDBEngine
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-if 'step' not in st.session_state:
-    st.session_state.step = 1
-if 'df_original' not in st.session_state:
-    st.session_state.df_original = None
-if 'mapping' not in st.session_state:
-    st.session_state.mapping = {}
+# ==========================================
+# 1. DEFINICIÓN DE FUNCIONES
+# ==========================================
 
-st.set_page_config(page_title="NORMADB IA | Auditoría de Datos", layout="wide")
+def enviar_alerta_correo(nombre_cliente, email_cliente):    
+    # --- CONFIGURACIÓN SEGURA ---
+    # RECOMENDACIÓN: Usa st.secrets["email"] en Streamlit Cloud
+    remitente = "personalsig03@gmail.com" 
+    password = "tu_contraseña_de_aplicacion" # ⚠️ ESTA DEBE SER LA CONTRASEÑA DE APP
+    receptor = "personalsig03@gmail.com" 
 
+    msg = MIMEMultipart()
+    msg['From'] = remitente
+    msg['To'] = receptor
+    msg['Subject'] = "🔔 NUEVO INTERESADO - NORMADB AI"
+
+    cuerpo = f"""
+    ¡Hola! Tienes un nuevo interesado en la auditoría.
+    
+    Nombre: {nombre_cliente}
+    Email: {email_cliente}
+    
+    Por favor, contacta a la brevedad.
+    """
+    msg.attach(MIMEText(cuerpo, 'plain'))
+
+    try:
+        # Configuración SMTP para Gmail
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(remitente, password)
+        server.send_message(msg)
+        server.quit()
+        return True
+    except Exception as e:
+        # Imprime el error en la terminal de VSC para depurar
+        print(f"Error técnico detallado: {e}")
+        return False    
+ 
 
 def suggest_mapping(columns):
     suggestions = {}
@@ -28,10 +61,25 @@ def suggest_mapping(columns):
                 break
     return suggestions
 
+# ==========================================
+# 2. INICIALIZACIÓN DE SESIÓN
+# ==========================================
+if 'step' not in st.session_state:
+    st.session_state.step = 1
+if 'df_original' not in st.session_state:
+    st.session_state.df_original = None
+if 'mapping' not in st.session_state:
+    st.session_state.mapping = {}
 
+st.set_page_config(page_title="NORMADB IA | Auditoría de Datos", layout="wide")
+
+# ==========================================
+# 3. INTERFAZ Y LÓGICA
+# ==========================================
 st.title("🛡️ NORMADB AI - Diagnóstico Express")
 st.write("Optimiza tus bases de datos en 3 pasos.")
 
+# --- PASO 1 ---
 if st.session_state.step == 1:
     st.header("1. Sube tu archivo")
     file = st.file_uploader("Arrastra tu Excel o CSV aquí", type=['xlsx', 'csv'])
@@ -41,6 +89,7 @@ if st.session_state.step == 1:
         st.session_state.step = 2
         st.rerun()
 
+# --- PASO 2 ---
 elif st.session_state.step == 2:
     st.header("2. Confirma la estructura de tus datos")
     df = st.session_state.df_original
@@ -71,34 +120,20 @@ elif st.session_state.step == 2:
         st.session_state.step = 3
         st.rerun()
 
+# --- PASO 3 ---
 elif st.session_state.step == 3:
     st.header("3. 📈 Resultado del Diagnóstico Express")
     
-    try:
-        df_to_process = st.session_state.df_original.rename(
-            columns={v: k for k, v in st.session_state.mapping.items() if v})
-
-        engine = NormaDBEngine(use_layer1=True, use_layer2=True)
-        df_final = engine.run(df_to_process)
-        
-        st.success("Todo cargó correctamente")
-
-    except Exception as e:
-        st.error(f"Error detectado en Step 3: {e}")
-        st.info("Revisa si falta alguna librería en el requirements.txt de VSC")
-
-    
+    # 1. PROCESAR DATOS
     df_to_process = st.session_state.df_original.rename(
         columns={v: k for k, v in st.session_state.mapping.items() if v})
 
     engine = NormaDBEngine(use_layer1=True, use_layer2=True)
     df_final = engine.run(df_to_process)
-
-   
+    
+    # 2. MOSTRAR MÉTRICAS Y RESULTADOS
     col_m1, col_m2, col_m3 = st.columns(3)
     total_filas = len(df_final)
-
-   
     errores_limpiados = st.session_state.df_original.isna().sum().sum()
 
     col_m1.metric("Registros Procesados", total_filas)
@@ -111,7 +146,7 @@ elif st.session_state.step == 3:
 
     st.divider()
 
-   
+    # 3. SECCIÓN DE VENTAS (FORMULARIO Y WHATSAPP)
     st.subheader("🚀 ¿Quieres llevar tu empresa al siguiente nivel?")
 
     c1, c2 = st.columns([1, 1])
@@ -123,9 +158,15 @@ elif st.session_state.step == 3:
             user_email = st.text_input("Tu correo corporativo:")
             user_name = st.text_input("Nombre / Empresa:")
             submit_lead = st.form_submit_button("Enviar Reporte y Descargar")
+            
             if submit_lead:
                 if user_email:
-                    st.success(f"¡Gracias {user_name}! Te contactaremos pronto.")
+                    # Llamada a la función de correo
+                    exito = enviar_alerta_correo(user_name, user_email)
+                    if exito:
+                        st.success(f"¡Gracias {user_name}! Te contactaremos pronto.")
+                    else:
+                        st.error("Error al enviar el formulario, inténtalo más tarde.")
                 else:
                     st.error("Por favor, ingresa un correo válido.")
 
@@ -135,13 +176,27 @@ elif st.session_state.step == 3:
             "Selecciona un plan para más información:",
             ["Diagnóstico de Madurez Digital", "Mantenimiento Mensual", "Especialista Cybersecurity"]
         )
-        # Nota: En Streamlit, los botones dentro de columnas a veces requieren lógica extra,
-        # pero este debería mostrarse ahora que el código no se rompe arriba.
         if st.button("Solicitar Información del Plan"):
             st.write(f"Interés registrado en: **{plan}**")
 
     st.divider()
 
-    if st.button("🔄 Limpiar otro archivo"):
-        st.session_state.step = 1
-        st.rerun()
+
+    st.subheader("¿Necesitas soporte personalizado?")
+    telefono = "573234240882" 
+    mensaje = "Hola, vi tu herramienta NormaDB AI y quiero saber más sobre los planes de membresía."
+    url_whatsapp = f"https://wa.me/{telefono}?text={mensaje}"
+
+    st.markdown(
+        f'<a href="{url_whatsapp}" target="_blank" style="text-decoration:none;">'
+        f'<div style="background-color:#25D366;color:white;padding:10px;border-radius:10px;text-align:center;font-weight:bold;">'
+        f'📲 Hablar con un consultor ahora'
+        f'</div></a>',
+        unsafe_allow_html=True
+    )
+
+    st.divider()
+    st.write("© 2026 Irina Ballesteros - Todos los derechos reservados.")
+
+    
+    
