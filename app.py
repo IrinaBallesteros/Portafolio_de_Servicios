@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from core.engine import NormaDBEngine
+from normadb_engine import NormaDBEngine  # Suponiendo que este es el motor modular importable
 
 # --- CONFIGURACIÓN DE ESTADO ---
 if 'step' not in st.session_state:
