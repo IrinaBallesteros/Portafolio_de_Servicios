@@ -4,6 +4,74 @@ from core.engine import NormaDBEngine
 import smtplib 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import re
+
+st.markdown("""
+    <style>
+    .stFormSubmitButton > button {
+        background-color: #003366 !important;
+        color: white !important;
+        border-radius: 10px !important;
+        border: 2px solid #00509d !important;
+        padding: 0.75rem 2rem !important;
+        width: 100% !important;
+        font-weight: bold !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    }
+    .stFormSubmitButton > button:hover {
+        background-color: #00509d !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
+    }
+
+    .stLinkButton > a {
+        background-color: #128C7E !important;
+        color: white !important;
+        border-radius: 10px !important;
+        border: none !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        width: 100% !important;
+        padding: 0.75rem !important;
+        display: block !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+    }
+    .stLinkButton > a:hover {
+        background-color: #075E54 !important;
+        transform: scale(1.02) !important;
+    }
+
+
+    hr {
+        margin: 2em 0px !important;
+        border-bottom: 2px solid #e1e4e8 !important;
+        opacity: 0.5 !important;
+    }
+
+
+    .footer-container {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 50px;
+    }
+    .footer-text {
+        color: #6c757d !important;
+        font-size: 0.85rem !important;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.5px;
+        opacity: 0.8;
+    
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+def es_email_valido(email):
+
+    patron = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(patron, email) is not None
 
 def enviar_alerta_correo(nombre_cliente, email_cliente):    
     remitente = st.secrets["email"]["remitente"]
@@ -94,7 +162,7 @@ elif st.session_state.step == 2:
         map_fecha = st.selectbox("Columna de Fecha:", [None] + cols,
                                  index=cols.index(suggestions['fecha']) + 1 if 'fecha' in suggestions else 0)
 
-    if st.button("Todo correcto, iniciar limpieza ✨"):
+    if st.button("Todo correcto, iniciar limpieza"):
         st.session_state.mapping = {
             'nombre': map_nombre,
             'cedula': map_cedula,
@@ -108,13 +176,13 @@ elif st.session_state.step == 2:
 elif st.session_state.step == 3:
     st.header("3. 📈 Resultado del Diagnóstico Express")
     
-    # Procesamiento (Motor de Eficiencia)
+
     df_to_process = st.session_state.df_original.rename(
         columns={v: k for k, v in st.session_state.mapping.items() if v})
     engine = NormaDBEngine(use_layer1=True, use_layer2=True)
     df_final = engine.run(df_to_process)
     
-    # Visualización de Valor (Lo que el cliente "prueba")
+
     col_m1, col_m2, col_m3 = st.columns(3)
     errores_limpiados = st.session_state.df_original.isna().sum().sum()
     
@@ -128,72 +196,84 @@ elif st.session_state.step == 3:
 
     st.divider()
 
-    # ESTRATEGIA DE VENTA: Captura de Lead para Consultoría
+
     st.subheader("¿Quieres recibir la base de datos completa y el diagnóstico de seguridad?")
     
     c1, c2 = st.columns([1, 1])
     
     with c1:
-        st.info("### 📝 Solicitar Auditoría Profesional")
-        st.write("Si te gustó la limpieza rápida, imagina lo que podemos hacer con tu infraestructura completa.")
+        st.info("### 🔓 Desbloquea tu Diagnóstico Completo")
+        st.write("Has probado la tecnología. Ahora, descarga el archivo optimizado al 100% y recibe tu reporte de riesgos estructurales.")
+        
         with st.form("lead_form"):
-            user_name = st.text_input("Nombre o Empresa:")
+            user_name = st.text_input("Nombre / Empresa:")
             user_email = st.text_input("Correo Corporativo:")
-            interes = st.selectbox("¿En qué estás interesado?", 
-                                   ["Recibir mi archivo limpio", "Diagnóstico de Madurez Digital", "Mantenimiento Mensual"])
             
-            submit_lead = st.form_submit_button("Solicitar Información")
+
+            plan_interes = st.selectbox("Plan de interés para tu acceso:", 
+                                    ["Plan Básico (Hasta 5 archivos)", 
+                                        "Plan Pro (Hasta 20 archivos)", 
+                                        "Plan Empresa (Ilimitado)"])
+            
+            submit_lead = st.form_submit_button("Solicitar Acceso y Descarga")
             
             if submit_lead:
-                if user_email and user_name:
-                    # Intentar enviar correo (Alerta para ti)
-                    exito = enviar_alerta_correo(f"{user_name} - Interés: {interes}", user_email)
+                if user_name and es_email_valido(user_email):
+
+                    exito = enviar_alerta_correo(f"{user_name} - INTERÉS EN {plan_interes}", user_email)
                     if exito:
                         st.balloons()
-                        st.success(f"¡Excelente decisión, {user_name}! He recibido tu solicitud. Te contactaré en menos de 24 horas.")
+                        st.success(f"¡Excelente, {user_name}! He recibido tu interés en el {plan_interes}. Te enviaré el archivo completo y la propuesta de membresía a tu correo.")
                     else:
-                        # Si el correo falla, igual le damos una alternativa para no perder la venta
-                        st.warning("Estamos experimentando alta demanda. Por favor, usa el botón de WhatsApp abajo para atención inmediata.")
+                        st.warning("⚠️ Casi listo. Por favor, contáctame por WhatsApp para enviarte tu archivo manualmente.")
                 else:
-                    st.error("Por favor completa tus datos para contactarte.")
+                    st.error("❌ Por favor, ingresa un nombre y un correo válido.")
+                                
 
     with c2:
-        st.write("### Beneficios de Continuar")
-        st.write("""
-        * **Ciberseguridad:** Análisis profundo de vulnerabilidades.
-        * **Eficiencia:** Automatización de tus procesos de facturación.
-        * **Talento:** Capacitación para tu equipo en herramientas digitales.
-        """)
+        st.write("### Membresías de Optimización")
+        st.write("Selecciona el plan que mejor se adapte a tu volumen de operación actual:")
+
+
+        datos_planes = {
+            "Plan": ["Básico", "Pro", "Empresa"],
+            "Archivos / mes": ["5", "20", "Ilimitado"],
+            "Registros por archivo": ["5,000", "50,000", "Ilimitado"],
+            "Formatos": ["CSV/XLSX", "CSV/XLSX", "Todos + JSON/TXT*"]
+        }
+        
+
+        st.table(datos_planes)
+        
+        st.caption("*Próximamente: Soporte para TXT y JSON en planes Empresa.")
+
         st.write("---")
+        st.markdown("""
+        **¿Por qué una membresía?**
+        * **Ahorro de Tiempo:** Procesamiento masivo en segundos.
+        * **Consistencia:** Capas de IA ajustadas a tu sector.
+        * **Escalabilidad:** De la validación manual a la automatización total.
+        """)
 
 
-        # Botón de WhatsApp integrado como cierre
         telefono = "573234240882"
-        mensaje = f"Hola Irina, acabo de probar NormaDB AI y estoy interesado en: {interes if 'interes' in locals() else 'un diagnóstico'}."
-        st.link_button("💬 Hablar con un experto por WhatsApp", f"https://wa.me/{telefono}?text={mensaje}")
+        mensaje_wa = "Hola Irina, probé el PMV de NormaDB AI y quiero más información sobre el Plan "
+        st.link_button("Adquirir Membresía ahora", f"https://wa.me/{telefono}?text={mensaje_wa}")
 
-    if st.button("🔄 Probar con otro archivo"):
-        st.session_state.step = 1
-        st.rerun()
 
+
+   
+  
     st.divider()
+    st.markdown("""
+    <div class="footer-container">
+        <p class="footer-text">
+            © 2026 <b>NORMADB AI</b> - Todos los derechos reservados. <br>
+            Hecho por <b>Irina Ballesteros Ospino</b>
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
-
-    st.subheader("¿Necesitas soporte personalizado?")
-    telefono = "573234240882" 
-    mensaje = "Hola, vi tu herramienta NormaDB AI y quiero saber más sobre los planes de membresía."
-    url_whatsapp = f"https://wa.me/{telefono}?text={mensaje}"
-
-    st.markdown(
-        f'<a href="{url_whatsapp}" target="_blank" style="text-decoration:none;">'
-        f'<div style="background-color:#25D366;color:white;padding:10px;border-radius:10px;text-align:center;font-weight:bold;">'
-        f'Hablar con un consultor ahora'
-        f'</div></a>',
-        unsafe_allow_html=True
-    )
-
-    st.divider()
-    st.write("© 2026 Irina Ballesteros - Todos los derechos reservados.")
 
     
     
