@@ -1,14 +1,14 @@
 import streamlit as st
 import pandas as pd
 from core.engine import NormaDBEngine
-import smtplib
+import smtplib 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def enviar_alerta_correo(nombre_cliente, email_cliente):    
-    remitente = "personalsig03@gmail.com" 
-    password = "tu_contraseña_de_aplicacion"
-    receptor = "personalsig03@gmail.com" 
+    remitente = st.secrets["email"]["remitente"]
+    password = st.secrets["email"]["password"]
+    receptor = st.secrets["email"]["receptor"]
 
     msg = MIMEMultipart()
     msg['From'] = remitente
@@ -33,8 +33,8 @@ def enviar_alerta_correo(nombre_cliente, email_cliente):
         server.quit()
         return True
     except Exception as e:
-        print(f"Error técnico detallado: {e}")
-        return False    
+        st.sidebar.error(f"Error técnico real: {e}")
+        return False
  
 
 def suggest_mapping(columns):
@@ -108,58 +108,73 @@ elif st.session_state.step == 2:
 elif st.session_state.step == 3:
     st.header("3. 📈 Resultado del Diagnóstico Express")
     
-
+    # Procesamiento (Motor de Eficiencia)
     df_to_process = st.session_state.df_original.rename(
         columns={v: k for k, v in st.session_state.mapping.items() if v})
-
     engine = NormaDBEngine(use_layer1=True, use_layer2=True)
     df_final = engine.run(df_to_process)
     
-
+    # Visualización de Valor (Lo que el cliente "prueba")
     col_m1, col_m2, col_m3 = st.columns(3)
-    total_filas = len(df_final)
     errores_limpiados = st.session_state.df_original.isna().sum().sum()
-
-    col_m1.metric("Registros Procesados", total_filas)
+    
+    col_m1.metric("Registros Procesados", len(df_final))
     col_m2.metric("Calidad de Datos", "85%", "+20% mejorada")
-    col_m3.metric("Errores Corregidos", errores_limpiados, "Capa 1 & 2")
+    col_m3.metric("Riesgos Detectados", errores_limpiados, "Capa 1 & 2")
 
-    st.success("✅ Tu base de datos ha sido estandarizada exitosamente.")
-    st.write("### Vista previa de tus datos optimizados:")
-    st.dataframe(df_final.head(10), use_container_width=True)
+    st.success("✅ Análisis completado. Hemos detectado y corregido inconsistencias estructurales.")
+    st.write("### Vista previa de tus datos optimizados (Modo Evaluación):")
+    st.dataframe(df_final.head(10), use_container_width=True) # Solo mostramos 10 filas
 
     st.divider()
 
-    st.subheader("🚀 ¿Quieres llevar tu empresa al siguiente nivel?")
-
+    # ESTRATEGIA DE VENTA: Captura de Lead para Consultoría
+    st.subheader("¿Quieres recibir la base de datos completa y el diagnóstico de seguridad?")
+    
     c1, c2 = st.columns([1, 1])
-
+    
     with c1:
-        st.info("### 📩 Recibe el Reporte Completo")
-        st.write("Análisis de vulnerabilidades y archivo final limpio.")
+        st.info("### 📝 Solicitar Auditoría Profesional")
+        st.write("Si te gustó la limpieza rápida, imagina lo que podemos hacer con tu infraestructura completa.")
         with st.form("lead_form"):
-            user_email = st.text_input("Tu correo corporativo:")
-            user_name = st.text_input("Nombre / Empresa:")
-            submit_lead = st.form_submit_button("Enviar Reporte y Descargar")
+            user_name = st.text_input("Nombre o Empresa:")
+            user_email = st.text_input("Correo Corporativo:")
+            interes = st.selectbox("¿En qué estás interesado?", 
+                                   ["Recibir mi archivo limpio", "Diagnóstico de Madurez Digital", "Mantenimiento Mensual"])
+            
+            submit_lead = st.form_submit_button("Solicitar Información")
             
             if submit_lead:
-                if user_email:
-                    exito = enviar_alerta_correo(user_name, user_email)
+                if user_email and user_name:
+                    # Intentar enviar correo (Alerta para ti)
+                    exito = enviar_alerta_correo(f"{user_name} - Interés: {interes}", user_email)
                     if exito:
-                        st.success(f"¡Gracias {user_name}! Te contactaremos pronto.")
+                        st.balloons()
+                        st.success(f"¡Excelente decisión, {user_name}! He recibido tu solicitud. Te contactaré en menos de 24 horas.")
                     else:
-                        st.error("Error al enviar el formulario, inténtalo más tarde.")
+                        # Si el correo falla, igual le damos una alternativa para no perder la venta
+                        st.warning("Estamos experimentando alta demanda. Por favor, usa el botón de WhatsApp abajo para atención inmediata.")
                 else:
-                    st.error("Por favor, ingresa un correo válido.")
+                    st.error("Por favor completa tus datos para contactarte.")
 
     with c2:
-        st.write("### 💎 Planes de Membresía")
-        plan = st.radio(
-            "Selecciona un plan para más información:",
-            ["Diagnóstico de Madurez Digital", "Mantenimiento Mensual", "Especialista Cybersecurity"]
-        )
-        if st.button("Solicitar Información del Plan"):
-            st.write(f"Interés registrado en: **{plan}**")
+        st.write("### Beneficios de Continuar")
+        st.write("""
+        * **Ciberseguridad:** Análisis profundo de vulnerabilidades.
+        * **Eficiencia:** Automatización de tus procesos de facturación.
+        * **Talento:** Capacitación para tu equipo en herramientas digitales.
+        """)
+        st.write("---")
+
+
+        # Botón de WhatsApp integrado como cierre
+        telefono = "573234240882"
+        mensaje = f"Hola Irina, acabo de probar NormaDB AI y estoy interesado en: {interes if 'interes' in locals() else 'un diagnóstico'}."
+        st.link_button("💬 Hablar con un experto por WhatsApp", f"https://wa.me/{telefono}?text={mensaje}")
+
+    if st.button("🔄 Probar con otro archivo"):
+        st.session_state.step = 1
+        st.rerun()
 
     st.divider()
 
@@ -172,7 +187,7 @@ elif st.session_state.step == 3:
     st.markdown(
         f'<a href="{url_whatsapp}" target="_blank" style="text-decoration:none;">'
         f'<div style="background-color:#25D366;color:white;padding:10px;border-radius:10px;text-align:center;font-weight:bold;">'
-        f'📲 Hablar con un consultor ahora'
+        f'Hablar con un consultor ahora'
         f'</div></a>',
         unsafe_allow_html=True
     )
