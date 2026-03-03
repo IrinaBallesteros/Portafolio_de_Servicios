@@ -3,474 +3,247 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Irina Ballesteros</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <title>Irina Ballesteros | Consultoría y Transformación Digital</title>
   
-</head>
-<style>
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.9);
-      z-index: 9999;
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-content {
-      background: #ffffff;
-      width: 100%;
-      max-width: 700px;
-      max-height: 90vh;
-      border-radius: 20px;
-      position: relative;
-      padding: 40px;
-      overflow-y: auto;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      animation: modalFadeIn 0.3s ease-out;
-    }
-
-    @keyframes modalFadeIn {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 20px; right: 25px;
-      font-size: 2rem;
-      cursor: pointer;
-      color: #64748b;
-      transition: color 0.3s;
-    }
-
-    .close-modal:hover { color: #1e3a8a; }
-
-    .package-box {
-      border-left: 4px solid #2563eb;
-      background: #f8fafc;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 0 12px 12px 0;
-    }
-
-    .package-box h4 { color: #1e3a8a; margin-top: 0; font-size: 1.3rem; }
-    .price-label { 
-      display: inline-block; 
-      background: #dbeafe; 
-      color: #1e40af; 
-      padding: 4px 12px; 
-      border-radius: 20px; 
-      font-weight: bold; 
-      margin: 10px 0;
-    }
-
-    .modal-btn-wa {
-      display: block;
-      text-align: center;
-      background: #25d366;
-      color: white;
-      text-decoration: none;
-      padding: 15px;
-      border-radius: 10px;
-      font-weight: bold;
-      margin-top: 30px;
-      transition: background 0.3s;
-    }
-
-    .modal-btn-wa:hover { background: #128c7e; }
-
-    
-    .btn-open-modal {
-      cursor: pointer;
-      border: none;
-      width: 100%;
-    }
-
-    .btn-open-modal, .btn-cta {
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-    }
-
-    btn-open-modal:hover, .btn-cta:hover {
-      transform: scale(1.05); 
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); 
-    f ilter: brightness(1.1);
-  }
-
-  .btn-open-modal:active {
-    transform: scale(0.98); 
-  }
-
-  .boton-cyber {
-    background-color: #007bff;
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-    transition: 0.3s;
-    display: inline-block;
-    }
-       
-  .boton-cyber:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-    }
- 
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <header>
-   <div class="logo anim-logo">Irina Ballesteros Ospino</div>
+    <div class="logo anim-logo">Irina Ballesteros</div>
     <input type="checkbox" id="menu-toggle">
     <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
     <nav>
       <ul>
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#sobremi">Sobre mí</a></li>
-        <li><a href="#herramienta-ia">NormaDB_IA</a></li>
-        <li><a href="#servicios">Soluciones</a></li>
-        <li><a href="#contacto">Contáctame</a></li>
+        <li><a href="#normadb">NORMADB_AI</a></li>
+        <li><a href="#puerta-entrada">Servicios</a></li>
+        <li><a href="#corporativo">Corporativo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero" id="inicio">
-    <h1>Estrategia, Innovación y Tecnología en Acción</h1>
-    <p>Acompaño a empresas, equipos y profesionales a ordenar, validar y fortalecer la forma en que operan, gestionan su información y utilizan la tecnología, con un enfoque en calidad, eficiencia y sostenibilidad digital.</p>
-    <a href="diagnostico.html" class="btn-diagnostico">Realiza tu diagnóstico gratuito</a>
-  </section>
-
-  <section id="sobremi">
-    <div class="sobre-container">
-      <div class="sobre-img">
-        <img src="images/perf.jpeg" alt="Foto de Irina Ballesteros" class="perfil-img">
-      </div>
-      <div class="sobre-texto">
-        <h2>Sobre mí</h2>
-         <p>Soy Administradora de Empresas con más de 10 años de experiencia acompañando organizaciones a ordenar sus procesos, mejorar su operación y tomar decisiones con mayor claridad.</p>
-
-          <p>A lo largo de mi trayectoria he liderado procesos de planeación estratégica, gestión organizacional, calidad, facturación, atención al cliente y satisfacción del usuario, lo que me ha permitido entender de primera mano dónde se generan los errores, los reprocesos y las pérdidas operativas dentro de las empresas.</p>
-
-          <p>Cuento con formación y experiencia como Auditora Interna en Sistemas Integrados de Gestión, con conocimiento en normas como ISO 9001, ISO 45001 y OHSAS 18001, lo que me permite analizar procesos con criterio, enfoque en riesgos y orientación a la mejora continua, sin caer en burocracia innecesaria.</p>
-
-          <p>Actualmente me formo como Ingeniera de Software, integrando la gestión empresarial con el desarrollo tecnológico. Esta combinación me permite diseñar soluciones digitales alineadas a procesos reales, pensadas para ser útiles, escalables y sostenibles en el tiempo.</p>
-
-          <p>Mi enfoque es práctico y humano, dado que no implemento herramientas por moda, sino soluciones que ayudan a las empresas a trabajar mejor, con más orden, control y eficiencia.</p>
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    <div class="hero-content" data-aos="fade-up">
+      <span class="hero-tag">Inteligencia de Procesos & Gobernanza de Datos</span>
+      <h1>Estructura Operativa Sólida. <br><span>Decisiones con Confianza.</span></h1>
+      <p>Diseño sistemas de control y arquitectura de procesos que convierten la información empresarial en una ventaja estratégica real.</p>
+      <div class="hero-btns">
+        <a href="#puerta-entrada" class="btn-main">Explorar Servicios</a>
+        <a href="#normadb" class="btn-sub">Descubrir NormaDB_AI</a>
       </div>
     </div>
   </section>
+     
+  <section id="normadb" class="membresia-destacada">
+    <div class="container-grid" data-aos="zoom-in">
+      <div class="text-content">
+        <span class="badge">Plataforma SaaS de Gobernanza de Datos</span>
+        <h2>NormaDB_AI: Motor Inteligente de Integridad y Control de Datos</h2>
+        <p>Automatiza la validación estructural, normalización y detección inteligente de errores 
+        en tus bases de datos mediante un sistema de análisis en múltiples capas. 
+        Diseñado para empresas que necesitan información confiable antes de tomar decisiones estratégicas.</p>
+        
+        <div class="ai-metrics">
+          <div class="metric-item"><strong>3</strong><span>Capas de Control</span></div>
+          <div class="metric-item"><strong>IA</strong><span>Detección Inteligente</span></div>
+          <div class="metric-item"><strong>24/7</strong><span>Procesamiento</span></div>
+        </div>
 
-  <section id="herramienta-ia" style="text-align: center; padding: 50px; background: #f4f7f6; border-radius: 20px;">
-    <h2>🛡️ NORMADB AI: Diagnosticador de Datos</h2>
-    <p>¿Qué tan saludable y segura es tu base de datos? Descúbrelo en 30 segundos.</p>
-    
-    <div style="margin-top: 30px;">
+        <ul class="features-list">
+          <li><i class="fas fa-check-circle"></i> Validación automática de integridad estructural (CSV, Excel, JSON, YAML).</li>
+          <li><i class="fas fa-check-circle"></i> Normalización avanzada de formatos críticos (IDs, fechas, emails).</li>
+          <li><i class="fas fa-check-circle"></i> Detección inteligente de inconsistencias mediante IA.</li>
+          <li><i class="fas fa-check-circle"></i> Generación de reportes ejecutivos de calidad y riesgos de datos.</li>
+          <li><i class="fas fa-check-circle"></i> Próximamente: aplicación de reglas de negocio específicas por sector.</li>
+      </ul>
         <a href="https://normadbai-irinaballesterosospino.streamlit.app/" target="_blank" class="boton-cyber">
-            Iniciar Auditoría de Datos Gratuita →
+            Ejecutar Diagnóstico Gratuito →
         </a>
-    </div> 
-</section>
-
-  <section id="servicios">
-    <h2 class="section-title">Servicios de Auditoría y Confiabilidad Operacional</h2>
-    <p class="section-subtitle">Estos servicios están diseñados para ayudar a organizaciones que necesitan recuperar el control sobre sus procesos, datos y tecnología.</p>
-
-    <div class="servicios-grid">
-      
-      <article class="servicio-card">
-        <img src="images/servicio_1.jpg" alt="Auditoría y Optimización de Procesos">
-        <h3>Auditoría y Optimización de Procesos</h3>
-        <p>Detecta, corrige y previene problemas en tus procesos para que tu organización funcione con eficiencia y seguridad.</p>
-        <p class="servicio-meta">⏱ Según alcance · 💻 Virtual o Presencial</p>
-        <button class="btn-cta btn-open-modal" onclick="openServiceDetail(1)">Más información</button>
-      </article> 
-
-      <article class="servicio-card servicio-destacado">
-        <div class="badge-popular">Más Solicitado</div> 
-        <img src="images/servicio_2.jpg" alt="Diagnóstico y Limpieza de Datos">
-        <h3>Diagnóstico y Limpieza de Datos</h3>
-        <p>Evaluamos y corregimos errores en tus archivos de datos (Excel, CSV, JSON o SQL), para que tu información sea confiable y lista para análisis o uso operativo.</p>
-        
-        <p class="servicio-meta">⏱ Según alcance · 💻 Virtual</p>
-        <button class="btn-cta btn-destacado btn-open-modal" onclick="openServiceDetail(2)">Más Información</button>
-      </article>
-
-      <article class="servicio-card">          
-        <img src="images/servicio_3.jpg" alt="Consultoría Estratégica 1:1">
-         <h3>Consultoría Estratégica 1:1 en Procesos y Tecnología</h3>
-         <p>Impulsa tu crecimiento profesional y la eficiencia de tu equipo con asesoría directa y práctica.</p>  
-          <p class="servicio-meta">⏱ Según paquete · 💻 Virtual</p>
-         <button class="btn-cta btn-open-modal" onclick="openServiceDetail(3)">Más información</button>
-      </article>
-
-      <article class="servicio-card">
-        <img src="images/servicio_4.jpg" alt="Auditoría de Sistemas">
-        <h3>Auditoría de Calidad de Sistemas y Riesgos Digitales</h3>
-        <p>Asegura la calidad de tus sistemas y protege la información crítica de tu organización.</p> 
-        <p class="servicio-meta">⏱ Según alcance · 💻 Virtual</p>
-        <button class="btn-cta btn-open-modal" onclick="openServiceDetail(4)">Más información</button>
-      </article>
-
-    </div>
-  </section>
-
-   <section id="diagnostico-digital" class="servicios-section servicios-diagnostico">
-  <div class="diagnostico-wrapper">
-
-      <div class="diagnostico-img">
-      <img src="images/Paquete1.jpg" alt="Diagnóstico de Madurez Digital">
-    </div>
-
-
-    <div class="diagnostico-content">
-      <h2 class="section-title">Diagnóstico de Madurez Digital y Procesos</h2>
-      <p class="section-subtitle">
-        Servicio estratégico para empresas que necesitan claridad antes de invertir tiempo o dinero en tecnología.
-      </p>
-     <h3>Diagnóstico de Madurez Digital</h3>
-     <p>Evalúa el estado real de los procesos, el uso de herramientas, la gestión de la información y la capacidad del equipo para operar de forma digital y organizada. Identifica brechas, riesgos y oportunidades de mejora con una visión integral del negocio.</p>
-      <p><strong>Resultado:</strong></p>
-      <p>Una radiografía clara de cómo funciona la empresa hoy y un roadmap priorizado para mejorar procesos, datos y tecnología.</p>
-
-      <p class="servicio-meta">⏱ 1–2 semanas · 💻 Virtual</p>
-      <button class="btn-cta btn-secundario btn-open-modal" onclick="openServiceDetail(5)">
-      Ver Detalle</button>
-    </div>
-</section>
-
- 
-<section id="servicios-especializados" class="servicios-section servicios-especializados">
-  <h2 class="section-title">Transformación Digital y Mejora Continua</h2>
-  <p class="section-subtitle">
-    Estos servicios están orientados a organizaciones que desean evolucionar más allá del orden básico y construir una operación verdaderamente digital, eficiente y resiliente. Acompaño a empresas y equipos en la adopción estratégica de tecnología, la mejora continua de sus procesos y el fortalecimiento de sus capacidades digitales, integrando gestión, software y cultura organizacional para lograr resultados sostenibles y medibles.
-  </p>
-
-  <div class="servicios-grid">
-    <article class="servicio-card">
-      <img src="images/Paquete2.jpg" alt="Acompañamiento Mensual">
-      <h3>Acompañamiento Mensual para Transformación Digital</h3>
-      <p>Soporte continuo para empresas que ya decidieron mejorar su forma de operar, pero necesitan guía, estructura y seguimiento.</p>
-      <p>Integra optimización de procesos, implementación de herramientas, capacitación al equipo y acompañamiento en la adopción real de la tecnología.</p>
-      
-      <p><strong>Resultado:</strong></p>
-      <p>Orden operativo, mayor productividad y uso efectivo de herramientas digitales en el día a día.</p>  
-      
-      <p class="servicio-meta">📆 Mensual · 💻 Virtual</p>
-      <button class="btn-cta btn-open-modal" onclick="openServiceDetail(6)">Más información</button>
-    </article>
-
-    <article class="servicio-card">
-      <img src="images/Paquete3.jpg" alt="Transformación Digital Paso a Paso">
-      <h3>Transformación Digital Paso a Paso (Programa 3 meses)</h3>
-      <p>Programa estructurado para empresas que quieren transformar su operación y cultura digital de forma organizada y sostenible.</p>
-      
-      <p>Incluye diagnóstico, definición de un roadmap, implementación de herramientas, optimización de procesos y capacitación del equipo para asegurar que el cambio no se quede en teoría.</p>
-        <p><strong>Resultado:</strong></p> 
-        <p>Una organización más eficiente, conectada y preparada para crecer con tecnología.</p>  
-        
-         <p class="servicio-meta">⏱ 12 semanas · 💻 Virtual o presencial</p>   
-
-       <button class="btn-cta btn-open-modal" onclick="openServiceDetail(7)">Más información</button>
-    </article>
-
-    <article class="servicio-card">
-      <img src="images/Paquete4.jpeg" alt="Capacitación y Desarrollo del Talento Digital">
-      <h3>Capacitación y Desarrollo del Talento Digital</h3>
-      <p>Servicio de formación para empresas que quieren fortalecer las habilidades digitales, humanas y de seguridad de su equipo.</p>
-      
-      <p>A través de talleres prácticos se desarrollan competencias en productividad, cultura digital, liderazgo, ciberseguridad y metodologías de trabajo modernas.</p>
-      <p><strong>Resultado:</strong></p>
-      <p>Equipos más autónomos, conscientes, productivos y preparados para operar en entornos digitales.</p>
-    
-        <p class="servicio-meta">⏱ según taller · 💻 Virtual o presencial</p>
-        <button class="btn-cta btn-open-modal" onclick="openServiceDetail(8)">Más información</button>
-    </article>  
-  </div>
-</section>
-
-<section id="contacto" data-aos="fade-up">
-  <div class="contacto-wrapper">
-    <div class="contacto-info">
-      <span class="subtitle">¿Hablamos?</span>
-      <h2>Llevemos tu gestión al <br><span>siguiente nivel</span></h2>
-      <p>Trabajo con empresas que necesitan orden, claridad y soluciones aplicables, no discursos técnicos sin ejecución.</p>
-      
-      <div class="direct-contact">
-        <a href="mailto:ballesterosirina1@gmail.com" class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <span>ballesterosirina1@gmail.com</span>
-        </a>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Colombia | Remoto</span>
+      </div>
+      <div class="image-content">
+        <div class="glass-frame">
+          <img src="images/normadb_ia.png" alt="Interface NormaDB_AI" class="img-float">
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="contacto-redes">
-      <p>Sígueme en mis redes profesionales:</p>
-      <div class="social-grid">
-        <a href="https://wa.me/message/C5ZES66757IMA1" target="_blank" class="social-card wa" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/irina-ballesteros/" target="_blank" class="social-card li" title="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://github.com/IrinaBallesteros" target="_blank" class="social-card gh" title="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.credly.com/users/irina-ballesteros-ospino/edit#credly" target="_blank" class="social-card cr" title="Certificaciones">
-          <i class="fas fa-certificate"></i>
-        </a>
-        <a href="https://www.tiktok.com/@irinaballesterosospino" target="_blank" class="social-card tk" title="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
+  <section id="puerta-entrada" class="servicios-entrada">
+    <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Servicios de Diagnóstico</h2>
+        <p class="section-subtitle">La mejor forma de empezar a trabajar juntos y detectar fallas críticas.</p>
+    </div>
+
+    <div class="servicios-grid">
+     <article class="servicio-card destacado-blue" data-aos="fade-up">
+       <div class="card-icon"><i class="fas fa-database"></i></div>
+       <h3>Diagnóstico de Datos</h3>
+      <p>Análisis de salud para archivos Excel, CSV, JSON o SQL. Identifica errores antes de que afecten tu facturación.</p>  
+      <a href="https://normadbai-irinaballesterosospino.streamlit.app/" target="_blank" class="btn-cta-outline" style="text-decoration: none; display: inline-block;">
+       Realizar Auditoría Gratis</a>
+    </article>
+
+     <article class="servicio-card destacado-blue featured-card" data-aos="fade-up" data-aos-delay="100">
+     <div class="card-icon"><i class="fas fa-rocket"></i></div>
+      <h3>Madurez Digital</h3>
+     <p>¿Qué tan lista está tu empresa para la automatización? Analizamos tus procesos actuales y trazamos un roadmap claro.</p>
+  
+    <a href="diagnostico.html" class="btn-cta-outline" style="text-decoration: none; display: inline-block; text-align: center;">
+    Realizar Test de Madurez
+    </a>
+    </article>
+
+   <article class="servicio-card destacado-blue" data-aos="fade-up" data-aos-delay="200">
+  <div class="card-icon"><i class="fas fa-shield-alt"></i></div> 
+  <h3>Auditoría Operativa y Control Interno</h3>
+  <p>Evaluación de procesos bajo estándares SIG para detectar riesgos operativos, cuellos de botella y fugas de capital en toda la cadena de valor.</p>
+  
+  <div class="card-actions">
+    <button class="btn-cta-outline" onclick="openServiceDetail(1)">
+      Evaluar si mi empresa necesita esta Auditoría
+    </button>
+    <a href="https://wa.me/message/C5ZES66757IMA1" target="_blank" class="btn-wa-link">
+      <i class="fab fa-whatsapp"></i> Agendar diagnóstico estratégico
+    </a>
+  </div>
+</article>
+    </div>
+  </section>
+
+   <section id="corporativo" class="section-corp">
+    <div class="corp-banner" data-aos="flip-up">
+      <div class="corp-info">
+        <h2>Servicios Corporativos Especializados</h2>
+        <p>Acompañamiento mensual, formación de talento digital y optimización integral de procesos a gran escala.</p>
+        <p class="small">Se requiere sesión de diagnóstico previa debido a la alta personalización del servicio.</p>
+      </div>
+      <div class="corp-cta">
+        <a href="https://wa.me/message/C5ZES66757IMA1" target="_blank" class="btn-main">Agendar Llamada Estratégica</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="main-footer">
-  <div class="footer-content">
-    <p>© 2025 <strong>Irina Ballesteros</strong> . Consultoría en Estrategia, Procesos y Tecnología</p>
-    <div class="footer-line"></div>
+  <footer class="main-footer">
+    <div class="footer-grid">
+     <p>© 2026 <strong>Irina Ballesteros</strong> | Inteligencia de Procesos & Gobernanza de Datos</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/irina-ballesteros"><i class="fab fa-linkedin"></i></a>
+        <a href="https://wa.me/message/C5ZES66757IMA1"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.tiktok.com/@irinaballesterosospino"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="serviceModal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div id="modalBody"></div>
+    </div>
   </div>
-</footer>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init();
+    AOS.init({ duration: 800, once: true });
+
 
     const serviceDetails = {
       1: {
-        title: "Auditoría y Optimización de Procesos",
-        subtitle: "Calidad, Control y Mejora Continua",
-        packages: [
-          { name: "Auditoría Express", price: "$1.250.000 – $1.750.000 COP", time: "2 semanas", items: ["Evaluación rápida de procesos clave", "Reporte ejecutivo", "Roadmap de acciones"] },
-          { name: "Auditoría Completa", price: "$3.000.000 – $4.500.000 COP", time: "3–4 semanas", items: ["Revisión integral organizacional", "Informe detallado", "Presentación ejecutiva", "Plan de mejora"] }
-        ]
-      },
-      2: {
-        title: "Diagnóstico y Limpieza de Datos",
-        subtitle: "Estructura y Claridad para tus Datos",
-        packages: [
-          { name: "Diagnóstico Express", price: "$150.000 – $250.000 COP", time: "24 horas", items: ["Análisis estructural de activo de información", "Detección de duplicados, nulos e inconsistencias", "Reporte resumido con recomendaciones"] },
-          { name: "Paquete Básico", price: "$600.000 – $750.000 COP", time: "1–3 días", items: ["Hasta 5,000 filas", "Corrección de duplicados y nulos", "Archivos corregidos", "Reporte de hallazgos"] },
-          { name: "Paquete Avanzado", price: "$1.250.000 – $1.750.000 COP", time: "1–2 semanas", items: ["Más de 5,000 filas / Multi-archivos", "Normalización completa", "Scripts de automatización", "Reporte técnico completo"] }
-        ]
-      },
-      3: {
-        title: "Consultoría Estratégica 1:1",
-        subtitle: "Claridad antes de invertir tiempo o dinero",
-        packages: [
-          { name: "Sesión Única", price: "$400.000 – $600.000 COP", time: "60–90 min", items: ["Asesoría personalizada", "Plan de acción inmediato"] },
-          { name: "Paquete de 3 Sesiones", price: "$1.100.000 – $1.500.000 COP", time: "Flexible", items: ["Seguimiento de aplicación", "Ajuste de recomendaciones"] },
-          { name: "Paquete Mensual", price: "$4.000.000 – $6.000.000 COP", time: "Mensual", items: ["Asesoría recurrente (1-2 sesiones/semana)", "Seguimiento de resultados continuo"] }
-        ]
-      },
-      4: {
-        title: "Calidad de Sistemas y Riesgos Digitales",
-        subtitle: "QA y Ciberhigiene para tu operación",
-        packages: [
-          { name: "Auditoría Básica", price: "$1.500.000 – $2.250.000 COP", time: "2 semanas", items: ["Revisión de 1 sistema o BD", "Informe de hallazgos", "Roadmap de mitigación"] },
-          { name: "Auditoría Completa", price: "$4.000.000 – $6.000.000 COP", time: "3–4 semanas", items: ["Multi-sistemas o BD críticas", "Plan de acción profundo", "Panel ejecutivo de riesgos"] }
-        ]
-      },
-      5: {
-        title: "Diagnóstico de Madurez Digital y Procesos",
-        subtitle: "Claridad estratégica antes de decidir",
-        packages: [
-            { name: "Diagnóstico Express", price: "$900.000 COP", time: "Micro y pequeñas empresas", items: ["Evaluación personalizada", "Análisis de brechas", "Roadmap rápido"] },
-            { name: "Diagnóstico Profesional", price: "$1.500.000 COP", time: "Empresas con varios procesos", items: ["Mapa de procesos", "Matriz de brechas digitales", "Informe técnico"] },
-            { name: "Diagnóstico Integral", price: "$2.300.000 COP", time: "Transformación total", items: ["Análisis de riesgos y cuellos de botella", "Plan estratégico a largo plazo", "Sesión de presentación"] }
-        ]
-    },
-    6: {
-        title: "Acompañamiento Mensual",
-        subtitle: "Soporte continuo para madurez digital",
-        packages: [
-            { name: "Plan Esencial", price: "$1.200.000 COP/mes", time: "1 sesión semanal", items: ["Optimización básica", "Seguimiento por WhatsApp"] },
-            { name: "Plan Profesional", price: "$1.800.000 COP/mes", time: "Sesión + Herramientas", items: ["Implementación de software", "Capacitación básica", "Métricas"] },
-            { name: "Plan Avanzado", price: "$2.500.000 COP/mes", time: "Soporte prioritario", items: ["Acompañamiento estratégico", "Transformación real de procesos"] }
-        ]
-    },
-    7: {
-        title: "Transformación Digital (3 Meses)",
-        subtitle: "Programa integral paso a paso",
-        packages: [
-            { name: "Base", price: "$3.500.000 COP", time: "Orden inicial", items: ["Diagnóstico inicial", "Mapeo de procesos"] },
-            { name: "Integral", price: "$7.500.000 COP", time: "Cambio profundo", items: ["2 herramientas clave", "Ciberhigiene", "Liderazgo digital"] }
-        ]
-    },
-    8: {
-        title: "Capacitación del Talento Digital",
-        subtitle: "Fortaleciendo habilidades humanas y técnicas",
-        packages: [
-            { name: "Taller Individual", price: "$350.000 COP", time: "2-3 horas", items: ["Material descargable", "Certificado"] },
-            { name: "Equipo Corporativo", price: "Desde $1.200.000 COP", time: "A medida", items: ["Evaluación de impacto", "Programa personalizado"] }
-        ]
-    }
-};
+        title: "Auditoría Operativa y Control Interno",
+        subtitle: "Blindaje de procesos y aseguramiento de la integridad operativa.",
+        intro: `Como Auditora Interna SIG, mi objetivo es garantizar que tu operación sea auditable, eficiente y libre de riesgos críticos. No solo buscamos errores, diseñamos el control para que no vuelvan a ocurrir.`,
+        decisionTriggers: [
+          "Existe una brecha entre lo que dice el manual y lo que ocurre en la realidad.",
+          "Sospechas de fugas de capital o ineficiencias en el ciclo operativo.",
+          "Dependencia excesiva de la memoria de los empleados (Falta de trazabilidad).",
+          "Preparación para certificaciones o escalamiento a nivel corporativo."
+        ],
+        scope: [
+          "Examen de Puntos Críticos de Control (PCC) en la cadena de valor.",
+          "Auditoría de integridad de datos: ¿La información en tus sistemas es veraz?",
+          "Identificación de 'No Conformidades' operativas bajo estándares SIG.",
+          "Evaluación de la segregación de funciones para prevenir fraudes o errores."
+        ],
+        deliverables: [
+          "<strong>Matriz de Riesgos y Controles:</strong> Priorizada por impacto financiero.",
+          "<strong>Informe de Auditoría SIG:</strong> Con hallazgos y evidencias claras.",
+          "<strong>Plan de Acción Preventivo:</strong> Hoja de ruta para cerrar brechas de control."
+        ],
+        idealFor: `Diseñado para gerentes y dueños de negocio que necesitan <strong>certeza operativa</strong> antes de digitalizar o expandir su mercado.`,
+        cta: `<a href="https://wa.me/message/C5ZES66757IMA1" target="_blank" class="btn-main">Agendar sesión de diagnóstico SIG</a>`
+      }
+     
+    };
 
     function openServiceDetail(id) {
-      const data = serviceDetails[id];
-      let html = `<h2 style="color:#1e3a8a; margin-bottom:5px;">${data.title}</h2>`;
-      html += `<p style="color:#64748b; font-style:italic; margin-bottom:25px;">${data.subtitle}</p>`;
+      const service = serviceDetails[id];
+      const modalBody = document.getElementById('modalBody');
+      const modal = document.getElementById('serviceModal');
 
-      data.packages.forEach(pkg => {
-        html += `
-          <div class="package-box">
-            <h4>${pkg.name}</h4>
-            <span class="price-label">${pkg.price}</span>
-            <p style="font-size:0.9rem; margin: 5px 0;"><strong>Tiempo estimado:</strong> ${pkg.time}</p>
-            <ul style="padding-left:20px; margin-top:10px;">
-              ${pkg.items.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-          </div>
+      if (service) {
+
+        modalBody.innerHTML = `
+          <h2 style="color:#0f172a; margin-bottom:10px;">${service.title}</h2>
+          <p style="color:#2563eb; font-weight:600; margin-bottom:15px;">${service.subtitle}</p>
+          <p style="font-style:italic; color:#64748b; margin-bottom:20px; border-left:3px solid #fdbb2d; padding-left:15px;">${service.intro}</p>
+          
+          <h4 style="margin-top:20px;">¿Cuándo necesitas esta evaluación?</h4>
+          <ul style="list-style:none; padding:10px 0;">
+            ${service.decisionTriggers.map(t => `<li style="margin-bottom:8px;">✔ ${t}</li>`).join('')}
+          </ul>
+
+          <h4 style="margin-top:20px;">Alcance del Análisis</h4>
+          <ul style="padding-left:20px;">
+            ${service.scope.map(s => `<li style="margin-bottom:5px;">${s}</li>`).join('')}
+          </ul>
+
+          <h4 style="margin-top:20px;">Entregables Finales</h4>
+          <ul style="padding-left:20px; margin-bottom:25px;">
+            ${service.deliverables.map(d => `<li style="margin-bottom:5px;">${d}</li>`).join('')}
+          </ul>
+
+          <p style="background:#f1f5f9; padding:15px; border-radius:8px; font-size:0.9rem; margin-bottom:25px;">${service.idealFor}</p>
+          
+          <div style="text-align:center;">${service.cta}</div>
         `;
-      });
-
-      if(data.extra) {
-        html += `<p style="font-size:0.85rem; color:#1e40af; background:#eff6ff; padding:10px; border-radius:8px;">${data.extra}</p>`;
+        
+        modal.style.display = 'flex';
+      } else {
+        console.error("Servicio no encontrado para el ID:", id);
       }
-
-      html += `<a href="https://wa.me/message/C5ZES66757IMA1" target="_blank" class="modal-btn-wa">Consultar disponibilidad por WhatsApp</a>`;
-
-      document.getElementById('modalBody').innerHTML = html;
-      document.getElementById('serviceModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden'; 
     }
 
     function closeModal() {
       document.getElementById('serviceModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
     }
 
- 
+
     window.onclick = function(event) {
-      if (event.target == document.getElementById('serviceModal')) closeModal();
+      const modal = document.getElementById('serviceModal');
+      if (event.target == modal) {
+        closeModal();
+      }
     }
+
+    window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.padding = '10px 8%';
+        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+    } else {
+        header.style.padding = '15px 8%';
+        header.style.boxShadow = 'none';
+    }
+});
   </script>
-
-  <div id="serviceModal" class="modal-overlay">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <div id="modalBody">
-        </div>
-    </div>
-  </div>
-
 </body>
 </html>
