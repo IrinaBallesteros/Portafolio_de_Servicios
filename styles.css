@@ -166,8 +166,19 @@ nav ul li a[href="#normadb"]:hover {
   background: linear-gradient(90deg, #2563eb, #1e40af);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-size: clamp(1.8rem, 2.7vw, 2.7rem);
 }
 
+.hero h3 {
+  font-size: 1.2em;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.hero span {
+  color: #475569;
+  font-weight: 700;
+}
 
 .hero p {
   font-size: 1.25rem;
